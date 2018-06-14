@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FUNKOBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_categorias">
+    <Key>
+      <PropertyRef Name="idcate" />
+    </Key>
+    <Property Name="idcate" Type="int" Nullable="false" />
+    <Property Name="nomcate" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="descripcion" Type="text" />
+    <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_productos">
+    <Key>
+      <PropertyRef Name="idprodu" />
+    </Key>
+    <Property Name="idprodu" Type="char" MaxLength="8" Nullable="false" />
+    <Property Name="codbar" Type="varchar" MaxLength="13" Nullable="false" />
+    <Property Name="nomprodu" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="idcate" Type="int" />
+    <Property Name="entrada" Type="int" />
+    <Property Name="salida" Type="int" />
+    <Property Name="precio" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+    <Property Name="caracte" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="descripcion" Type="text" />
+    <Property Name="imagen" Type="varchar" MaxLength="50" />
+    <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_usuarios">
+    <Key>
+      <PropertyRef Name="idusu" />
+    </Key>
+    <Property Name="idusu" Type="char" MaxLength="8" Nullable="false" />
+    <Property Name="nomusu" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="pass" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="tipusu" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="correo" Type="varchar" MaxLength="100" />
+    <Property Name="direcenvio" Type="varchar" MaxLength="200" />
+    <Property Name="tarjeta" Type="varchar" MaxLength="16" />
+    <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__tb_produc__idcat__1A14E395">
+    <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="0..1" />
+    <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_categorias">
+        <PropertyRef Name="idcate" />
+      </Principal>
+      <Dependent Role="tb_productos">
+        <PropertyRef Name="idcate" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FUNKOBDModelStoreContainer">
+    <EntitySet Name="tb_categorias" EntityType="Self.tb_categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_productos" EntityType="Self.tb_productos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tb_produc__idcat__1A14E395" Association="Self.FK__tb_produc__idcat__1A14E395">
+      <End Role="tb_categorias" EntitySet="tb_categorias" />
+      <End Role="tb_productos" EntitySet="tb_productos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

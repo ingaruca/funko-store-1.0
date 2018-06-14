@@ -1,0 +1,47 @@
+﻿@model IEnumerable<funko_store_1._0.Models.tb_productos>
+<link href="~/Content/MiEstilo.css" rel="stylesheet" />
+<div class="cuerpo">
+    @foreach (var reg in Model)
+    {
+        <div class="registro">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <div class="enlace">
+                            <img class="imagen" src=@Url.Content(string.Format("../imagenes/{0}",@reg.imagen)) />
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Categoria: </td>
+                    <td>
+                        @reg.tb_categorias.nomcate
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nombre: </td>
+                    <td>
+                        @reg.nomprodu
+                    </td>
+                </tr>
+                <tr>
+                    <td>Descripcion </td>
+                    <td>
+                        @reg.descripcion
+                    </td>
+                </tr>
+                <tr>
+                    <td>Precio: </td>
+                    <td>
+                        @reg.precio
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="enlace">
+                        @Html.ActionLink("Seleccionar", "Seleccionar", new { id = reg.idprodu })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    }
+</div>

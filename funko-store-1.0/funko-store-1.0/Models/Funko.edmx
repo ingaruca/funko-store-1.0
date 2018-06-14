@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FUNKOBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tb_categorias">
+          <Key>
+            <PropertyRef Name="idcate" />
+          </Key>
+          <Property Name="idcate" Type="int" Nullable="false" />
+          <Property Name="nomcate" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_productos">
+          <Key>
+            <PropertyRef Name="idprodu" />
+          </Key>
+          <Property Name="idprodu" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="codbar" Type="varchar" MaxLength="13" Nullable="false" />
+          <Property Name="nomprodu" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="idcate" Type="int" />
+          <Property Name="entrada" Type="int" />
+          <Property Name="salida" Type="int" />
+          <Property Name="precio" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="caracte" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="imagen" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_usuarios">
+          <Key>
+            <PropertyRef Name="idusu" />
+          </Key>
+          <Property Name="idusu" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="nomusu" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="pass" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="tipusu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="correo" Type="varchar" MaxLength="100" />
+          <Property Name="direcenvio" Type="varchar" MaxLength="200" />
+          <Property Name="tarjeta" Type="varchar" MaxLength="16" />
+          <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tb_produc__idcat__1A14E395">
+          <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="0..1" />
+          <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_categorias">
+              <PropertyRef Name="idcate" />
+            </Principal>
+            <Dependent Role="tb_productos">
+              <PropertyRef Name="idcate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FUNKOBDModelStoreContainer">
+          <EntitySet Name="tb_categorias" EntityType="Self.tb_categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_productos" EntityType="Self.tb_productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tb_produc__idcat__1A14E395" Association="Self.FK__tb_produc__idcat__1A14E395">
+            <End Role="tb_categorias" EntitySet="tb_categorias" />
+            <End Role="tb_productos" EntitySet="tb_productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FUNKOBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tb_categorias">
+          <Key>
+            <PropertyRef Name="idcate" />
+          </Key>
+          <Property Name="idcate" Type="Int32" Nullable="false" />
+          <Property Name="nomcate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_productos" Relationship="Self.FK__tb_produc__idcat__1A14E395" FromRole="tb_categorias" ToRole="tb_productos" />
+        </EntityType>
+        <EntityType Name="tb_productos">
+          <Key>
+            <PropertyRef Name="idprodu" />
+          </Key>
+          <Property Name="idprodu" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="codbar" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nomprodu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="idcate" Type="Int32" />
+          <Property Name="entrada" Type="Int32" />
+          <Property Name="salida" Type="Int32" />
+          <Property Name="precio" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="caracte" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_categorias" Relationship="Self.FK__tb_produc__idcat__1A14E395" FromRole="tb_productos" ToRole="tb_categorias" />
+        </EntityType>
+        <EntityType Name="tb_usuarios">
+          <Key>
+            <PropertyRef Name="idusu" />
+          </Key>
+          <Property Name="idusu" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nomusu" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="tipusu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="direcenvio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="tarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tb_produc__idcat__1A14E395">
+          <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="0..1" />
+          <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_categorias">
+              <PropertyRef Name="idcate" />
+            </Principal>
+            <Dependent Role="tb_productos">
+              <PropertyRef Name="idcate" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FUNKOBDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tb_categorias" EntityType="Self.tb_categorias" />
+          <EntitySet Name="tb_productos" EntityType="Self.tb_productos" />
+          <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" />
+          <AssociationSet Name="FK__tb_produc__idcat__1A14E395" Association="Self.FK__tb_produc__idcat__1A14E395">
+            <End Role="tb_categorias" EntitySet="tb_categorias" />
+            <End Role="tb_productos" EntitySet="tb_productos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FUNKOBDModelStoreContainer" CdmEntityContainer="FUNKOBDEntities">
+          <EntitySetMapping Name="tb_categorias">
+            <EntityTypeMapping TypeName="FUNKOBDModel.tb_categorias">
+              <MappingFragment StoreEntitySet="tb_categorias">
+                <ScalarProperty Name="idcate" ColumnName="idcate" />
+                <ScalarProperty Name="nomcate" ColumnName="nomcate" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_productos">
+            <EntityTypeMapping TypeName="FUNKOBDModel.tb_productos">
+              <MappingFragment StoreEntitySet="tb_productos">
+                <ScalarProperty Name="idprodu" ColumnName="idprodu" />
+                <ScalarProperty Name="codbar" ColumnName="codbar" />
+                <ScalarProperty Name="nomprodu" ColumnName="nomprodu" />
+                <ScalarProperty Name="idcate" ColumnName="idcate" />
+                <ScalarProperty Name="entrada" ColumnName="entrada" />
+                <ScalarProperty Name="salida" ColumnName="salida" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="caracte" ColumnName="caracte" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_usuarios">
+            <EntityTypeMapping TypeName="FUNKOBDModel.tb_usuarios">
+              <MappingFragment StoreEntitySet="tb_usuarios">
+                <ScalarProperty Name="idusu" ColumnName="idusu" />
+                <ScalarProperty Name="nomusu" ColumnName="nomusu" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="tipusu" ColumnName="tipusu" />
+                <ScalarProperty Name="correo" ColumnName="correo" />
+                <ScalarProperty Name="direcenvio" ColumnName="direcenvio" />
+                <ScalarProperty Name="tarjeta" ColumnName="tarjeta" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

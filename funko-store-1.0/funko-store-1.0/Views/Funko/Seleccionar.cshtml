@@ -1,0 +1,23 @@
+﻿@model funko_store_1._0.Models.tb_productos
+
+@{
+    ViewBag.Title = "Seleccionar";
+}
+
+<h2>Seleccionar</h2>
+
+<div>
+    @Html.ActionLink("Principal", "Index")
+
+</div>
+
+@Html.Partial("_PartialRegistro")
+
+@using (Html.BeginForm())
+{
+    <div>
+        <input type="submit" value="Agregar" />
+    </div>
+}
+
+

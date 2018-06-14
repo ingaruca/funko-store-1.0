@@ -1,3 +1,4 @@
+D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.Razor.xml
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\ApplicationInsights.config
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\roslyn\csc.exe
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
@@ -57,7 +58,6 @@ D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\Micr
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.Helpers.xml
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.Mvc.xml
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.Optimization.xml
-D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.Razor.xml
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.WebPages.xml
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.WebPages.Deployment.xml
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\System.Web.WebPages.Razor.xml
@@ -96,6 +96,5 @@ D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\M
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\Microsoft.Owin.Security.Google.resources.dll
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\obj\Debug\funko-store-1.0.csprojResolveAssemblyReference.cache
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\obj\Debug\funko-store-1.0.dll
 D:\CIBERTEC\GIT_PROYECT\funko-store-1.0\funko-store-1.0\funko-store-1.0\obj\Debug\funko-store-1.0.pdb
