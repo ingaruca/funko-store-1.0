@@ -4,11 +4,11 @@
     <Key>
       <PropertyRef Name="idcate" />
     </Key>
-    <Property Name="idcate" Type="Int32" Nullable="false" />
+    <Property Name="idcate" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nomcate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tb_productos" Relationship="Self.FK__tb_produc__idcat__1A14E395" FromRole="tb_categorias" ToRole="tb_productos" />
+    <NavigationProperty Name="tb_productos" Relationship="Self.FK__tb_produc__idcat__5812160E" FromRole="tb_categorias" ToRole="tb_productos" />
   </EntityType>
   <EntityType Name="tb_productos">
     <Key>
@@ -17,7 +17,7 @@
     <Property Name="idprodu" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="codbar" Type="String" MaxLength="13" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="nomprodu" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="idcate" Type="Int32" />
+    <Property Name="idcate" Type="Int32" Nullable="false" />
     <Property Name="entrada" Type="Int32" />
     <Property Name="salida" Type="Int32" />
     <Property Name="precio" Type="Decimal" Precision="15" Scale="2" Nullable="false" />
@@ -25,7 +25,7 @@
     <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="tb_categorias" Relationship="Self.FK__tb_produc__idcat__1A14E395" FromRole="tb_productos" ToRole="tb_categorias" />
+    <NavigationProperty Name="tb_categorias" Relationship="Self.FK__tb_produc__idcat__5812160E" FromRole="tb_productos" ToRole="tb_categorias" />
   </EntityType>
   <EntityType Name="tb_usuarios">
     <Key>
@@ -40,8 +40,8 @@
     <Property Name="tarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
     <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
   </EntityType>
-  <Association Name="FK__tb_produc__idcat__1A14E395">
-    <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="0..1" />
+  <Association Name="FK__tb_produc__idcat__5812160E">
+    <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="1" />
     <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tb_categorias">
@@ -52,13 +52,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="FUNKOBDEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="FUNKOBDEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="tb_categorias" EntityType="Self.tb_categorias" />
     <EntitySet Name="tb_productos" EntityType="Self.tb_productos" />
     <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" />
-    <AssociationSet Name="FK__tb_produc__idcat__1A14E395" Association="Self.FK__tb_produc__idcat__1A14E395">
+    <AssociationSet Name="FK__tb_produc__idcat__5812160E" Association="Self.FK__tb_produc__idcat__5812160E">
       <End Role="tb_categorias" EntitySet="tb_categorias" />
       <End Role="tb_productos" EntitySet="tb_productos" />
     </AssociationSet>
+    <FunctionImport Name="Autogenera" ReturnType="Collection(Int32)" />
   </EntityContainer>
 </Schema>

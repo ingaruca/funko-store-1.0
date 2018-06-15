@@ -4,11 +4,11 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5746f2f2ea23455d9ca5b9ccd96dbaab" Name="Diagram1">
+      <Diagram DiagramId="92ebc6e3222d415b9c67b473cb40264b" Name="Diagram1">
         <EntityTypeShape EntityType="FUNKOBDModel.tb_categorias" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="FUNKOBDModel.tb_productos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="FUNKOBDModel.tb_usuarios" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="FUNKOBDModel.FK__tb_produc__idcat__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="FUNKOBDModel.FK__tb_produc__idcat__5812160E" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

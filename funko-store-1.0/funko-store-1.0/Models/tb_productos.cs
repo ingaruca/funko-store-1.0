@@ -17,7 +17,7 @@ namespace funko_store_1._0.Models
         public string idprodu { get; set; }
         public string codbar { get; set; }
         public string nomprodu { get; set; }
-        public Nullable<int> idcate { get; set; }
+        public int idcate { get; set; }
         public Nullable<int> entrada { get; set; }
         public Nullable<int> salida { get; set; }
         public decimal precio { get; set; }

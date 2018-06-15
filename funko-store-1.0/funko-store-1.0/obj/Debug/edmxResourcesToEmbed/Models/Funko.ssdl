@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="idcate" />
     </Key>
-    <Property Name="idcate" Type="int" Nullable="false" />
+    <Property Name="idcate" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nomcate" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="descripcion" Type="text" />
     <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
@@ -16,7 +16,7 @@
     <Property Name="idprodu" Type="char" MaxLength="8" Nullable="false" />
     <Property Name="codbar" Type="varchar" MaxLength="13" Nullable="false" />
     <Property Name="nomprodu" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="idcate" Type="int" />
+    <Property Name="idcate" Type="int" Nullable="false" />
     <Property Name="entrada" Type="int" />
     <Property Name="salida" Type="int" />
     <Property Name="precio" Type="decimal" Precision="15" Scale="2" Nullable="false" />
@@ -38,8 +38,8 @@
     <Property Name="tarjeta" Type="varchar" MaxLength="16" />
     <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
-  <Association Name="FK__tb_produc__idcat__1A14E395">
-    <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="0..1" />
+  <Association Name="FK__tb_produc__idcat__5812160E">
+    <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="1" />
     <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="tb_categorias">
@@ -50,11 +50,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="Autogenera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="FUNKOBDModelStoreContainer">
     <EntitySet Name="tb_categorias" EntityType="Self.tb_categorias" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_productos" EntityType="Self.tb_productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__tb_produc__idcat__1A14E395" Association="Self.FK__tb_produc__idcat__1A14E395">
+    <AssociationSet Name="FK__tb_produc__idcat__5812160E" Association="Self.FK__tb_produc__idcat__5812160E">
       <End Role="tb_categorias" EntitySet="tb_categorias" />
       <End Role="tb_productos" EntitySet="tb_productos" />
     </AssociationSet>

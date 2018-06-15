@@ -1,0 +1,18 @@
+﻿@model IEnumerable<funko_store_1._0.Models.Registro>
+
+@{
+    ViewBag.Title = "Pago";
+}
+
+<h2>Pago</h2>
+<div>@Html.ActionLink("Retornar","Index")</div>
+@using (Html.BeginForm())
+{
+    // LOS DATOS LO JALA DE LA SESSION USUARIO
+    <div><input type="submit" value="Aceptar"></div>
+
+}
+
+@Html.Partial("_PartialComprar")
+<div>Monto Total: @ViewBag.mt</div>
+

@@ -239,32 +239,33 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\FUNKOBD.sql" />
     <Content Include="Content\MiEstilo.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Imagenes\PRO001.jpg" />
+    <Content Include="Imagenes\PRO00001.jpg" />
     <Content Include="Imagenes\AIUDA.jpg" />
-    <Content Include="Imagenes\PRO002.jpg" />
-    <Content Include="Imagenes\PRO003.jpg" />
-    <Content Include="Imagenes\PRO004.jpg" />
-    <Content Include="Imagenes\PRO005.jpg" />
-    <Content Include="Imagenes\PRO006.jpg" />
-    <Content Include="Imagenes\PRO007.jpg" />
-    <Content Include="Imagenes\PRO008.jpg" />
-    <Content Include="Imagenes\PRO009.jpg" />
-    <Content Include="Imagenes\PRO010.jpg" />
-    <Content Include="Imagenes\PRO011.jpg" />
-    <Content Include="Imagenes\PRO012.jpg" />
-    <Content Include="Imagenes\PRO013.jpg" />
-    <Content Include="Imagenes\PRO014.jpg" />
-    <Content Include="Imagenes\PRO015.jpg" />
-    <Content Include="Imagenes\PRO016.jpg" />
-    <Content Include="Imagenes\PRO017.jpg" />
-    <Content Include="Imagenes\PRO018.jpg" />
-    <Content Include="Imagenes\PRO019.jpg" />
-    <Content Include="Imagenes\PRO020.jpg" />
+    <Content Include="Imagenes\PRO00002.jpg" />
+    <Content Include="Imagenes\PRO00003.jpg" />
+    <Content Include="Imagenes\PRO00004.jpg" />
+    <Content Include="Imagenes\PRO00005.jpg" />
+    <Content Include="Imagenes\PRO00006.jpg" />
+    <Content Include="Imagenes\PRO00007.jpg" />
+    <Content Include="Imagenes\PRO00008.jpg" />
+    <Content Include="Imagenes\PRO00009.jpg" />
+    <Content Include="Imagenes\PRO00010.jpg" />
+    <Content Include="Imagenes\PRO00011.jpg" />
+    <Content Include="Imagenes\PRO00012.jpg" />
+    <Content Include="Imagenes\PRO00013.jpg" />
+    <Content Include="Imagenes\PRO00014.jpg" />
+    <Content Include="Imagenes\PRO00015.jpg" />
+    <Content Include="Imagenes\PRO00016.jpg" />
+    <Content Include="Imagenes\PRO00017.jpg" />
+    <Content Include="Imagenes\PRO00018.jpg" />
+    <Content Include="Imagenes\PRO00019.jpg" />
+    <Content Include="Imagenes\PRO00020.jpg" />
     <Content Include="Models\Funko.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Funko.edmx</DependentUpon>
@@ -338,6 +339,8 @@
     <Content Include="Views\Funko\Seleccionar.cshtml" />
     <Content Include="Views\Shared\_PartialComprar.cshtml" />
     <Content Include="Views\Shared\_PartialRegistro.cshtml" />
+    <Content Include="Views\Funko\Comprar.cshtml" />
+    <Content Include="Views\Funko\Pago.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

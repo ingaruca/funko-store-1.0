@@ -1,0 +1,25 @@
+﻿@model IEnumerable<funko_store_1._0.Models.Registro>
+
+@{
+    ViewBag.Title = "Comprar";
+}
+
+<h2>Comprar</h2>
+<div>
+    @Html.Partial("_PartialComprar")
+
+</div>
+<br />
+
+<div>
+
+    Monto Total: @ViewBag.mt
+</div>
+
+<div>
+    @Html.ActionLink("Realizar Pago", "Pago")
+</div>
+<div>
+    @Html.ActionLink("Seguir Comprando", "Index")
+</div>
+
