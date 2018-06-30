@@ -14,6 +14,12 @@ namespace funko_store_1._0.Models
     
     public partial class tb_usuarios
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tb_usuarios()
+        {
+            this.tb_pedido = new HashSet<tb_pedido>();
+        }
+    
         public string idusu { get; set; }
         public string nomusu { get; set; }
         public string pass { get; set; }
@@ -22,5 +28,8 @@ namespace funko_store_1._0.Models
         public string direcenvio { get; set; }
         public string tarjeta { get; set; }
         public string estado { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_pedido> tb_pedido { get; set; }
     }
 }

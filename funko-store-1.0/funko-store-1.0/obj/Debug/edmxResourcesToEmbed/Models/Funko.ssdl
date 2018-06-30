@@ -9,6 +9,30 @@
     <Property Name="descripcion" Type="text" />
     <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'FUNKOBD.dbo.tb_detapedido' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="tb_detapedido">
+    <Key>
+      <PropertyRef Name="idpedido" />
+      <PropertyRef Name="idprodu" />
+      <PropertyRef Name="precio" />
+      <PropertyRef Name="cantidad" />
+    </Key>
+    <Property Name="idpedido" Type="int" Nullable="false" />
+    <Property Name="idprodu" Type="char" MaxLength="8" Nullable="false" />
+    <Property Name="precio" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tb_pedido">
+    <Key>
+      <PropertyRef Name="idpedido" />
+    </Key>
+    <Property Name="idpedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fecpedido" Type="smalldatetime" />
+    <Property Name="idusu" Type="char" MaxLength="8" Nullable="false" />
+    <Property Name="total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+    <Property Name="estado" Type="char" MaxLength="10" Nullable="false" />
+  </EntityType>
   <EntityType Name="tb_productos">
     <Key>
       <PropertyRef Name="idprodu" />
@@ -38,6 +62,42 @@
     <Property Name="tarjeta" Type="varchar" MaxLength="16" />
     <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
   </EntityType>
+  <Association Name="FK__tb_detape__idped__70DDC3D8">
+    <End Role="tb_pedido" Type="Self.tb_pedido" Multiplicity="1" />
+    <End Role="tb_detapedido" Type="Self.tb_detapedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_pedido">
+        <PropertyRef Name="idpedido" />
+      </Principal>
+      <Dependent Role="tb_detapedido">
+        <PropertyRef Name="idpedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tb_detape__idpro__71D1E811">
+    <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="1" />
+    <End Role="tb_detapedido" Type="Self.tb_detapedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_productos">
+        <PropertyRef Name="idprodu" />
+      </Principal>
+      <Dependent Role="tb_detapedido">
+        <PropertyRef Name="idprodu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__tb_pedido__idusu__628FA481">
+    <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="1" />
+    <End Role="tb_pedido" Type="Self.tb_pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tb_usuarios">
+        <PropertyRef Name="idusu" />
+      </Principal>
+      <Dependent Role="tb_pedido">
+        <PropertyRef Name="idusu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__tb_produc__idcat__5812160E">
     <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="1" />
     <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="*" />
@@ -53,8 +113,29 @@
   <Function Name="Autogenera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="FUNKOBDModelStoreContainer">
     <EntitySet Name="tb_categorias" EntityType="Self.tb_categorias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_pedido" EntityType="Self.tb_pedido" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_productos" EntityType="Self.tb_productos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_detapedido" EntityType="Self.tb_detapedido" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tb_detapedido].[idpedido] AS [idpedido], 
+    [tb_detapedido].[idprodu] AS [idprodu], 
+    [tb_detapedido].[precio] AS [precio], 
+    [tb_detapedido].[cantidad] AS [cantidad]
+    FROM [dbo].[tb_detapedido] AS [tb_detapedido]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK__tb_detape__idped__70DDC3D8" Association="Self.FK__tb_detape__idped__70DDC3D8">
+      <End Role="tb_pedido" EntitySet="tb_pedido" />
+      <End Role="tb_detapedido" EntitySet="tb_detapedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tb_detape__idpro__71D1E811" Association="Self.FK__tb_detape__idpro__71D1E811">
+      <End Role="tb_productos" EntitySet="tb_productos" />
+      <End Role="tb_detapedido" EntitySet="tb_detapedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK__tb_pedido__idusu__628FA481" Association="Self.FK__tb_pedido__idusu__628FA481">
+      <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+      <End Role="tb_pedido" EntitySet="tb_pedido" />
+    </AssociationSet>
     <AssociationSet Name="FK__tb_produc__idcat__5812160E" Association="Self.FK__tb_produc__idcat__5812160E">
       <End Role="tb_categorias" EntitySet="tb_categorias" />
       <End Role="tb_productos" EntitySet="tb_productos" />

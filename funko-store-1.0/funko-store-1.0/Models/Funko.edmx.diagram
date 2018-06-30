@@ -9,6 +9,11 @@
         <EntityTypeShape EntityType="FUNKOBDModel.tb_productos" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="FUNKOBDModel.tb_usuarios" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="FUNKOBDModel.FK__tb_produc__idcat__5812160E" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FUNKOBDModel.tb_pedido" Width="1.5" PointX="3" PointY="5.625" />
+        <EntityTypeShape EntityType="FUNKOBDModel.tb_detapedido" Width="1.5" PointX="5.25" PointY="4.625" />
+        <AssociationConnector Association="FUNKOBDModel.FK__tb_detape__idped__70DDC3D8" />
+        <AssociationConnector Association="FUNKOBDModel.FK__tb_pedido__idusu__628FA481" />
+        <AssociationConnector Association="FUNKOBDModel.FK__tb_detape__idpro__71D1E811" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

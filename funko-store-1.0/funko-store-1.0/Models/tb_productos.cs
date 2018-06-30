@@ -14,6 +14,12 @@ namespace funko_store_1._0.Models
     
     public partial class tb_productos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tb_productos()
+        {
+            this.tb_detapedido = new HashSet<tb_detapedido>();
+        }
+    
         public string idprodu { get; set; }
         public string codbar { get; set; }
         public string nomprodu { get; set; }
@@ -27,5 +33,7 @@ namespace funko_store_1._0.Models
         public string estado { get; set; }
     
         public virtual tb_categorias tb_categorias { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_detapedido> tb_detapedido { get; set; }
     }
 }

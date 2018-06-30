@@ -56,7 +56,7 @@ namespace funko_store_1._0.Controllers
         #endregion Index
 
         #region Seleccionar
-        public ActionResult Seleccionar(string id = null) 
+        public ActionResult Seleccionar(string id = null)
         {
             if (Session["carrito"] == null)
             {
@@ -68,7 +68,7 @@ namespace funko_store_1._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult Seleccionar(string id, string nada = null)
+        public ActionResult Seleccionar(string id, int cantidad)
         {
             tb_productos reg = data.tb_productos.Where(x => x.idprodu == id).FirstOrDefault();
 
@@ -76,8 +76,8 @@ namespace funko_store_1._0.Controllers
             it.id = reg.idprodu;
             it.nombre = reg.nomprodu;
             it.precio = reg.precio;
-            it.cantidad = 1;
-            it.monto = reg.precio;
+            it.cantidad = cantidad;
+            it.monto = reg.precio * cantidad;
 
             List<Registro> detalle = (List<Registro>)Session["carrito"];
             detalle.Add(it);
@@ -151,7 +151,7 @@ namespace funko_store_1._0.Controllers
                 // ESTE USUARIO ES DE PRUEBA, PORQUE SE OBTENDRA ESE DATO CON LA SESSION USUARIO
                 cmd.Parameters.Add("@idusu", SqlDbType.Char, 8).Value = "USU00001";
                 cmd.Parameters.Add("@monto", SqlDbType.Decimal).Value = Monto();
-                cmd.Parameters.Add("@estado", SqlDbType.Char,10).Value = "PENDIENTE";
+                cmd.Parameters.Add("@estado", SqlDbType.Char, 10).Value = "PENDIENTE";
                 cmd.ExecuteNonQuery();
 
                 List<Registro> detalle = (List<Registro>)Session["carrito"];
@@ -190,6 +190,8 @@ namespace funko_store_1._0.Controllers
             return RedirectToAction("Index");
         }
         #endregion Pagar
+
+
 
     }
 }

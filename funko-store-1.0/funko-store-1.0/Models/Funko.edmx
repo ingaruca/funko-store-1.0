@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="FUNKOBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="FUNKOBDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="tb_categorias">
           <Key>
             <PropertyRef Name="idcate" />
@@ -13,6 +13,30 @@
           <Property Name="nomcate" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="descripcion" Type="text" />
           <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'FUNKOBD.dbo.tb_detapedido' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="tb_detapedido">
+          <Key>
+            <PropertyRef Name="idpedido" />
+            <PropertyRef Name="idprodu" />
+            <PropertyRef Name="precio" />
+            <PropertyRef Name="cantidad" />
+          </Key>
+          <Property Name="idpedido" Type="int" Nullable="false" />
+          <Property Name="idprodu" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tb_pedido">
+          <Key>
+            <PropertyRef Name="idpedido" />
+          </Key>
+          <Property Name="idpedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fecpedido" Type="smalldatetime" />
+          <Property Name="idusu" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="total" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+          <Property Name="estado" Type="char" MaxLength="10" Nullable="false" />
         </EntityType>
         <EntityType Name="tb_productos">
           <Key>
@@ -43,6 +67,42 @@
           <Property Name="tarjeta" Type="varchar" MaxLength="16" />
           <Property Name="estado" Type="char" MaxLength="1" Nullable="false" />
         </EntityType>
+        <Association Name="FK__tb_detape__idped__70DDC3D8">
+          <End Role="tb_pedido" Type="Self.tb_pedido" Multiplicity="1" />
+          <End Role="tb_detapedido" Type="Self.tb_detapedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pedido">
+              <PropertyRef Name="idpedido" />
+            </Principal>
+            <Dependent Role="tb_detapedido">
+              <PropertyRef Name="idpedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_detape__idpro__71D1E811">
+          <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="1" />
+          <End Role="tb_detapedido" Type="Self.tb_detapedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_productos">
+              <PropertyRef Name="idprodu" />
+            </Principal>
+            <Dependent Role="tb_detapedido">
+              <PropertyRef Name="idprodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_pedido__idusu__628FA481">
+          <End Role="tb_usuarios" Type="Self.tb_usuarios" Multiplicity="1" />
+          <End Role="tb_pedido" Type="Self.tb_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuarios">
+              <PropertyRef Name="idusu" />
+            </Principal>
+            <Dependent Role="tb_pedido">
+              <PropertyRef Name="idusu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__tb_produc__idcat__5812160E">
           <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="1" />
           <End Role="tb_productos" Type="Self.tb_productos" Multiplicity="*" />
@@ -58,15 +118,35 @@
         <Function Name="Autogenera" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="FUNKOBDModelStoreContainer">
           <EntitySet Name="tb_categorias" EntityType="Self.tb_categorias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_pedido" EntityType="Self.tb_pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_productos" EntityType="Self.tb_productos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tb_usuarios" EntityType="Self.tb_usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_detapedido" EntityType="Self.tb_detapedido" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tb_detapedido].[idpedido] AS [idpedido], 
+    [tb_detapedido].[idprodu] AS [idprodu], 
+    [tb_detapedido].[precio] AS [precio], 
+    [tb_detapedido].[cantidad] AS [cantidad]
+    FROM [dbo].[tb_detapedido] AS [tb_detapedido]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__tb_detape__idped__70DDC3D8" Association="Self.FK__tb_detape__idped__70DDC3D8">
+            <End Role="tb_pedido" EntitySet="tb_pedido" />
+            <End Role="tb_detapedido" EntitySet="tb_detapedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_detape__idpro__71D1E811" Association="Self.FK__tb_detape__idpro__71D1E811">
+            <End Role="tb_productos" EntitySet="tb_productos" />
+            <End Role="tb_detapedido" EntitySet="tb_detapedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_pedido__idusu__628FA481" Association="Self.FK__tb_pedido__idusu__628FA481">
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+            <End Role="tb_pedido" EntitySet="tb_pedido" />
+          </AssociationSet>
           <AssociationSet Name="FK__tb_produc__idcat__5812160E" Association="Self.FK__tb_produc__idcat__5812160E">
             <End Role="tb_categorias" EntitySet="tb_categorias" />
             <End Role="tb_productos" EntitySet="tb_productos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="FUNKOBDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -96,6 +176,7 @@
           <Property Name="imagen" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tb_categorias" Relationship="Self.FK__tb_produc__idcat__5812160E" FromRole="tb_productos" ToRole="tb_categorias" />
+          <NavigationProperty Name="tb_detapedido" Relationship="FUNKOBDModel.FK__tb_detape__idpro__71D1E811" FromRole="tb_productos" ToRole="tb_detapedido" />
         </EntityType>
         <EntityType Name="tb_usuarios">
           <Key>
@@ -109,6 +190,7 @@
           <Property Name="direcenvio" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="tarjeta" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_pedido" Relationship="FUNKOBDModel.FK__tb_pedido__idusu__628FA481" FromRole="tb_usuarios" ToRole="tb_pedido" />
         </EntityType>
         <Association Name="FK__tb_produc__idcat__5812160E">
           <End Role="tb_categorias" Type="Self.tb_categorias" Multiplicity="1" />
@@ -131,7 +213,83 @@
             <End Role="tb_productos" EntitySet="tb_productos" />
           </AssociationSet>
           <FunctionImport Name="Autogenera" ReturnType="Collection(Int32)" />
+          <EntitySet Name="tb_pedido" EntityType="FUNKOBDModel.tb_pedido" />
+          <EntitySet Name="tb_detapedido" EntityType="FUNKOBDModel.tb_detapedido" />
+          <AssociationSet Name="FK__tb_detape__idped__70DDC3D8" Association="FUNKOBDModel.FK__tb_detape__idped__70DDC3D8">
+            <End Role="tb_pedido" EntitySet="tb_pedido" />
+            <End Role="tb_detapedido" EntitySet="tb_detapedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_pedido__idusu__628FA481" Association="FUNKOBDModel.FK__tb_pedido__idusu__628FA481">
+            <End Role="tb_usuarios" EntitySet="tb_usuarios" />
+            <End Role="tb_pedido" EntitySet="tb_pedido" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tb_detape__idpro__71D1E811" Association="FUNKOBDModel.FK__tb_detape__idpro__71D1E811">
+            <End Role="tb_productos" EntitySet="tb_productos" />
+            <End Role="tb_detapedido" EntitySet="tb_detapedido" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tb_pedido">
+          <Key>
+            <PropertyRef Name="idpedido" />
+          </Key>
+          <Property Name="idpedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecpedido" Type="DateTime" Precision="0" />
+          <Property Name="idusu" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="total" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="tb_detapedido" Relationship="FUNKOBDModel.FK__tb_detape__idped__70DDC3D8" FromRole="tb_pedido" ToRole="tb_detapedido" />
+          <NavigationProperty Name="tb_usuarios" Relationship="FUNKOBDModel.FK__tb_pedido__idusu__628FA481" FromRole="tb_pedido" ToRole="tb_usuarios" />
+        </EntityType>
+        <EntityType Name="tb_detapedido">
+          <Key>
+            <PropertyRef Name="idpedido" />
+            <PropertyRef Name="idprodu" />
+            <PropertyRef Name="precio" />
+            <PropertyRef Name="cantidad" />
+          </Key>
+          <Property Name="idpedido" Type="Int32" Nullable="false" />
+          <Property Name="idprodu" Type="String" Nullable="false" MaxLength="8" FixedLength="true" Unicode="false" />
+          <Property Name="precio" Type="Decimal" Nullable="false" Precision="15" Scale="2" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tb_pedido" Relationship="FUNKOBDModel.FK__tb_detape__idped__70DDC3D8" FromRole="tb_detapedido" ToRole="tb_pedido" />
+          <NavigationProperty Name="tb_productos" Relationship="FUNKOBDModel.FK__tb_detape__idpro__71D1E811" FromRole="tb_detapedido" ToRole="tb_productos" />
+        </EntityType>
+        <Association Name="FK__tb_detape__idped__70DDC3D8">
+          <End Type="FUNKOBDModel.tb_pedido" Role="tb_pedido" Multiplicity="1" />
+          <End Type="FUNKOBDModel.tb_detapedido" Role="tb_detapedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_pedido">
+              <PropertyRef Name="idpedido" />
+            </Principal>
+            <Dependent Role="tb_detapedido">
+              <PropertyRef Name="idpedido" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_pedido__idusu__628FA481">
+          <End Type="FUNKOBDModel.tb_usuarios" Role="tb_usuarios" Multiplicity="1" />
+          <End Type="FUNKOBDModel.tb_pedido" Role="tb_pedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_usuarios">
+              <PropertyRef Name="idusu" />
+            </Principal>
+            <Dependent Role="tb_pedido">
+              <PropertyRef Name="idusu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tb_detape__idpro__71D1E811">
+          <End Type="FUNKOBDModel.tb_productos" Role="tb_productos" Multiplicity="1" />
+          <End Type="FUNKOBDModel.tb_detapedido" Role="tb_detapedido" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_productos">
+              <PropertyRef Name="idprodu" />
+            </Principal>
+            <Dependent Role="tb_detapedido">
+              <PropertyRef Name="idprodu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -180,6 +338,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Autogenera" FunctionName="FUNKOBDModel.Store.Autogenera" />
+          <EntitySetMapping Name="tb_pedido">
+            <EntityTypeMapping TypeName="FUNKOBDModel.tb_pedido">
+              <MappingFragment StoreEntitySet="tb_pedido">
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="idusu" ColumnName="idusu" />
+                <ScalarProperty Name="fecpedido" ColumnName="fecpedido" />
+                <ScalarProperty Name="idpedido" ColumnName="idpedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_detapedido">
+            <EntityTypeMapping TypeName="FUNKOBDModel.tb_detapedido">
+              <MappingFragment StoreEntitySet="tb_detapedido">
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="idprodu" ColumnName="idprodu" />
+                <ScalarProperty Name="idpedido" ColumnName="idpedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

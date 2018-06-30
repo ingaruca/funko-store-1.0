@@ -43,5 +43,26 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="Autogenera" FunctionName="FUNKOBDModel.Store.Autogenera" />
+    <EntitySetMapping Name="tb_pedido">
+      <EntityTypeMapping TypeName="FUNKOBDModel.tb_pedido">
+        <MappingFragment StoreEntitySet="tb_pedido">
+          <ScalarProperty Name="estado" ColumnName="estado" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="idusu" ColumnName="idusu" />
+          <ScalarProperty Name="fecpedido" ColumnName="fecpedido" />
+          <ScalarProperty Name="idpedido" ColumnName="idpedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_detapedido">
+      <EntityTypeMapping TypeName="FUNKOBDModel.tb_detapedido">
+        <MappingFragment StoreEntitySet="tb_detapedido">
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="idprodu" ColumnName="idprodu" />
+          <ScalarProperty Name="idpedido" ColumnName="idpedido" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

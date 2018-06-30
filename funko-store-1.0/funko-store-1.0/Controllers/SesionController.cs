@@ -21,7 +21,7 @@ namespace funko_store_1._0.Controllers
         }
 
         [HttpPost]
-        public ActionResult Resgistro(string nomusu, string pass)
+        public ActionResult Registro(string nomusu, string pass)
         {
             SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cnFunko"].ConnectionString);
             cn.Open();
@@ -34,7 +34,6 @@ namespace funko_store_1._0.Controllers
 
             try
             {
-                
                 SqlCommand cmd = new SqlCommand("INSERT INTO tb_usuarios(nomusu, pass, tipusu, estado) VALUES(@usu, @pass, @tipo, @estado)", cn);
                 cmd.Parameters.AddWithValue("@usu", nomusu);
                 cmd.Parameters.AddWithValue("@pass", pass);
@@ -44,7 +43,7 @@ namespace funko_store_1._0.Controllers
                 cmd.ExecuteNonQuery();
 
                 SqlCommand cmd2 = new SqlCommand("SELECT idusu FROM tb_usuarios order by idusu desc", cn);
-                SqlDataReader dr = cmd.ExecuteReader();
+                SqlDataReader dr = cmd2.ExecuteReader();
 
                 if(Session["usuario"] == null)
                 {

@@ -202,6 +202,7 @@
     <Compile Include="Controllers\FunkoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -226,6 +227,12 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Registro.cs" />
     <Compile Include="Models\tb_categorias.cs">
+      <DependentUpon>Funko.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_detapedido.cs">
+      <DependentUpon>Funko.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_pedido.cs">
       <DependentUpon>Funko.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tb_productos.cs">
@@ -346,6 +353,7 @@
     <Content Include="Views\Funko\Comprar.cshtml" />
     <Content Include="Views\Funko\Pago.cshtml" />
     <Content Include="Views\Sesion\Registro.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

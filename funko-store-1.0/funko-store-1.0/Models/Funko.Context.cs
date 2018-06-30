@@ -30,6 +30,8 @@ namespace funko_store_1._0.Models
         public virtual DbSet<tb_categorias> tb_categorias { get; set; }
         public virtual DbSet<tb_productos> tb_productos { get; set; }
         public virtual DbSet<tb_usuarios> tb_usuarios { get; set; }
+        public virtual DbSet<tb_pedido> tb_pedido { get; set; }
+        public virtual DbSet<tb_detapedido> tb_detapedido { get; set; }
     
         public virtual ObjectResult<Nullable<int>> Autogenera()
         {
