@@ -22,7 +22,7 @@
                 <td>@reg.cantidad</td>
                 <td>@reg.monto</td>
                 <td>
-                    <img class="imagen" src="@Url.Content(string.Format("../imagenes/{0}.jpg",@reg.id))" />
+                    <img class="imagen" src="@Url.Content(string.Format("../imagenes/{0}.png",@reg.id))" />
                 </td>
                 <td>@Html.ActionLink("Eliminar", "Eliminar", new { id = @reg.id })</td>
             </tr>

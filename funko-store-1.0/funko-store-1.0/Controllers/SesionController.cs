@@ -66,5 +66,64 @@ namespace funko_store_1._0.Controllers
 
         }
 
+        // GET: Sesion
+        public ActionResult Login()
+        {
+            return View(new tb_usuarios());
+        }
+
+        [HttpPost]
+        public ActionResult Login(string nomusu, string pass)
+        {
+            SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cnFunko"].ConnectionString);
+            cn.Open();
+
+            if (!ModelState.IsValid)
+            {
+                return View(new tb_usuarios());
+            }
+
+
+            try
+            {
+                SqlCommand cmd = new SqlCommand("SELECT * FROM tb_usuarios where nomusu = @usu and pass = @pass and estado = 'A'", cn);
+                cmd.Parameters.AddWithValue("@usu", nomusu);
+                cmd.Parameters.AddWithValue("@pass", pass);          
+                                               
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    if (Session["usuario"] != null)
+                    {
+                        Session["usuario"] = null;
+                    }
+                    UsuarioSesion ususesion = new UsuarioSesion();
+                    ususesion.idUsuSesion = dr.GetString(0);
+                    ususesion.nomUsuSesion = dr.GetString(1);
+                    Session["usuario"] = ususesion;
+
+                }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error: ", e.Message);
+            }
+            finally
+            {
+                cn.Close();
+            }
+
+            return RedirectToAction("../Funko/Index");
+
+        }
+
+        public ActionResult LogOut()
+        {
+            Session["usuario"] = null;
+            return RedirectToAction("../Funko/Index");
+        }
+
     }
 }

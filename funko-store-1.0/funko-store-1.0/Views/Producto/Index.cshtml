@@ -1,0 +1,95 @@
+﻿@model IEnumerable<funko_store_1._0.Models.Productos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table" border="1" cellpadding="0" cellspacing="0">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idprodu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.codbar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomprodu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomcate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.entrada)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.salida)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.caracte)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.imagen)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idprodu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.codbar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomprodu)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.nomcate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.entrada)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.salida)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.precio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.caracte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                <img class="imagen" width="30px" height="40px" src="@Url.Content(string.Format("../Imagenes/{0}.png",item.idprodu))" />
+                @* @Html.DisplayFor(modelItem => item.imagen)> *@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.estado)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.idprodu }) |
+                @Html.ActionLink("Details", "Details", new { id = item.idprodu }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.idprodu })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,69 @@
+﻿@model IEnumerable<funko_store_1._0.Models.tb_usuarios>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idusu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.nomusu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tipusu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.direcenvio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.tarjeta)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.estado)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idusu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomusu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tipusu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.correo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.direcenvio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.tarjeta)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.idusu }) |
+            @Html.ActionLink("Details", "Details", new { id = item.idusu }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.idusu })
+        </td>
+    </tr>
+}
+
+</table>

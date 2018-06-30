@@ -203,7 +203,9 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\SesionController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -225,6 +227,8 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Procedimientos.cs" />
+    <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Registro.cs" />
     <Compile Include="Models\tb_categorias.cs">
       <DependentUpon>Funko.tt</DependentUpon>
@@ -254,27 +258,56 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Imagenes\PRO00001.jpg" />
-    <Content Include="Imagenes\AIUDA.jpg" />
-    <Content Include="Imagenes\PRO00002.jpg" />
-    <Content Include="Imagenes\PRO00003.jpg" />
-    <Content Include="Imagenes\PRO00004.jpg" />
-    <Content Include="Imagenes\PRO00005.jpg" />
-    <Content Include="Imagenes\PRO00006.jpg" />
-    <Content Include="Imagenes\PRO00007.jpg" />
-    <Content Include="Imagenes\PRO00008.jpg" />
-    <Content Include="Imagenes\PRO00009.jpg" />
-    <Content Include="Imagenes\PRO00010.jpg" />
-    <Content Include="Imagenes\PRO00011.jpg" />
-    <Content Include="Imagenes\PRO00012.jpg" />
-    <Content Include="Imagenes\PRO00013.jpg" />
-    <Content Include="Imagenes\PRO00014.jpg" />
-    <Content Include="Imagenes\PRO00015.jpg" />
-    <Content Include="Imagenes\PRO00016.jpg" />
-    <Content Include="Imagenes\PRO00017.jpg" />
-    <Content Include="Imagenes\PRO00018.jpg" />
-    <Content Include="Imagenes\PRO00019.jpg" />
-    <Content Include="Imagenes\PRO00020.jpg" />
+    <Content Include="Imagenes\PRO00001.png" />
+    <Content Include="Imagenes\PRO00002.png" />
+    <Content Include="Imagenes\PRO00003.png" />
+    <Content Include="Imagenes\PRO00004.png" />
+    <Content Include="Imagenes\PRO00005.png" />
+    <Content Include="Imagenes\PRO00006.png" />
+    <Content Include="Imagenes\PRO00007.png" />
+    <Content Include="Imagenes\PRO00008.png" />
+    <Content Include="Imagenes\PRO00009.png" />
+    <Content Include="Imagenes\PRO00010.png" />
+    <Content Include="Imagenes\PRO00011.png" />
+    <Content Include="Imagenes\PRO00012.png" />
+    <Content Include="Imagenes\PRO00013.png" />
+    <Content Include="Imagenes\PRO00014.png" />
+    <Content Include="Imagenes\PRO00015.png" />
+    <Content Include="Imagenes\PRO00016.png" />
+    <Content Include="Imagenes\PRO00017.png" />
+    <Content Include="Imagenes\PRO00018.png" />
+    <Content Include="Imagenes\PRO00019.png" />
+    <Content Include="Imagenes\PRO00020.png" />
+    <Content Include="Imagenes\PRO00021.png" />
+    <Content Include="Imagenes\PRO00022.png" />
+    <Content Include="Imagenes\PRO00023.png" />
+    <Content Include="Imagenes\PRO00024.png" />
+    <Content Include="Imagenes\PRO00025.png" />
+    <Content Include="Imagenes\PRO00026.png" />
+    <Content Include="Imagenes\PRO00027.png" />
+    <Content Include="Imagenes\PRO00028.png" />
+    <Content Include="Imagenes\PRO00029.png" />
+    <Content Include="Imagenes\PRO00030.png" />
+    <Content Include="Imagenes\PRO00031.png" />
+    <Content Include="Imagenes\PRO00032.png" />
+    <Content Include="Imagenes\PRO00033.png" />
+    <Content Include="Imagenes\PRO00034.png" />
+    <Content Include="Imagenes\PRO00035.png" />
+    <Content Include="Imagenes\PRO00036.png" />
+    <Content Include="Imagenes\PRO00037.png" />
+    <Content Include="Imagenes\PRO00038.png" />
+    <Content Include="Imagenes\PRO00039.png" />
+    <Content Include="Imagenes\PRO00040.png" />
+    <Content Include="Imagenes\PRO00041.png" />
+    <Content Include="Imagenes\PRO00042.png" />
+    <Content Include="Imagenes\PRO00043.png" />
+    <Content Include="Imagenes\PRO00044.png" />
+    <Content Include="Imagenes\PRO00045.png" />
+    <Content Include="Imagenes\PRO00046.png" />
+    <Content Include="Imagenes\PRO00047.png" />
+    <Content Include="Imagenes\PRO00048.png" />
+    <Content Include="Imagenes\PRO00049.png" />
+    <Content Include="Imagenes\PRO00050.png" />
     <Content Include="Models\Funko.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Funko.edmx</DependentUpon>
@@ -354,6 +387,13 @@
     <Content Include="Views\Funko\Pago.cshtml" />
     <Content Include="Views\Sesion\Registro.cshtml" />
     <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Create.cshtml" />
+    <Content Include="Views\Producto\Edit.cshtml" />
+    <Content Include="Views\Producto\Details.cshtml" />
+    <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Sesion\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
