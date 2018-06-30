@@ -1,47 +1,21 @@
 ﻿@model IEnumerable<funko_store_1._0.Models.tb_productos>
-<link href="~/Content/MiEstilo.css" rel="stylesheet" />
-<div class="cuerpo">
+    <div class="row">
+        
     @foreach (var reg in Model)
-    {
-        <div class="registro">
-            <table>
-                <tr>
-                    <td colspan="2">
-                        <div class="enlace">
-                            <img class="imagen" src=@Url.Content(string.Format("../imagenes/{0}",@reg.imagen)) />
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Categoria: </td>
-                    <td>
-                        @reg.tb_categorias.nomcate
-                    </td>
-                </tr>
-                <tr>
-                    <td>Nombre: </td>
-                    <td>
-                        @reg.nomprodu
-                    </td>
-                </tr>
-                <tr>
-                    <td>Descripcion </td>
-                    <td>
-                        @reg.descripcion
-                    </td>
-                </tr>
-                <tr>
-                    <td>Precio: </td>
-                    <td>
-                        @reg.precio
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="enlace">
-                        @Html.ActionLink("Seleccionar", "Seleccionar", new { id = reg.idprodu })
-                    </td>
-                </tr>
-            </table>
+            {
+        <div class="col-sm-6 col-md-4" style="margin-bottom: 20px">
+            <div class="thumbnail">
+                <img width="242" src=@Url.Content(string.Format("../imagenes/{0}",@reg.imagen)) alt="@reg.nomprodu">
+                <div class="caption">
+                    <h4>@reg.nomprodu</h4>
+                    <p>@reg.descripcion</p>
+                    <p>Categoría: @reg.tb_categorias.nomcate</p>
+                    <h2>Precio: @reg.precio</h2>
+                    <p>@Html.ActionLink("Seleccionar", "Seleccionar", new { id = reg.idprodu }, htmlAttributes: new { @class = "btn btn-primary" })</p>
+                </div>
+            </div>
         </div>
     }
-</div>
+        
+    </div>
+
