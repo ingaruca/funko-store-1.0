@@ -9,5 +9,6 @@ namespace funko_store_1._0.Models
     {
         public string idUsuSesion { get; set; }
         public string nomUsuSesion { get; set; }
+        public string tipo { get; set; }
     }
 }

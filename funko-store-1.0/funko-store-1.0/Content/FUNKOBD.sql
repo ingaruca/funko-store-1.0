@@ -139,3 +139,156 @@ as
 	select iif(max(idpedido)+1 is null,1001,max(idpedido)+1) from tb_pedido
 	
 go
+
+----------------------------------
+
+create procedure detalleProducto
+@idprodu char(8)
+as
+select p.idprodu, p.codbar, p.nomprodu, p.idcate, c.nomcate, p.entrada, p.salida, 
+	   p.precio, p.caracte, p.descripcion, imagen, p.estado
+from tb_productos p join tb_categorias c on p.idcate = c.idcate where p.idprodu = @idprodu
+
+go
+
+/*buscar producto*/
+create procedure buscarProducto
+@idprodu char(8)
+as
+select * from tb_productos where idprodu = @idprodu
+go
+
+/*eliminar de productos*/
+create procedure eliminarProducto
+@idprodu char(8)
+as
+delete tb_productos where idprodu=@idprodu
+go
+
+/*Insert de productos*/
+create procedure insertarProducto
+@codbar varchar(13),
+@nomprodu varchar(100),
+@idcate int,
+@entrada int,
+@salida int,
+@precio decimal(15,2),
+@caracte varchar(200),
+@descripcion text,
+@imagen varchar(50),
+@estado char(1)
+as
+insert into tb_productos (codbar, nomprodu, idcate, entrada, salida, precio, caracte, descripcion, imagen, estado)
+values (@codbar, @nomprodu, @idcate, @entrada, @salida, @precio, @caracte, @descripcion, @imagen, @estado)
+go
+
+/*modificar de productos*/
+create procedure modificarProducto
+@idprodu char(8),
+@codbar varchar(13),
+@nomprodu varchar(100),
+@idcate int,
+@entrada int,
+@salida int,
+@precio decimal(15,2),
+@caracte varchar(200),
+@descripcion text,
+@imagen varchar(50),
+@estado char(1)
+as
+update tb_productos set codbar=@codbar, nomprodu=@nomprodu, idcate=@idcate, entrada=@entrada, salida=@salida, 
+						precio=@precio, caracte=@caracte, descripcion=@descripcion, imagen=@imagen, estado=@estado
+					where idprodu=@idprodu
+go
+
+/*listar productos*/
+create procedure listarProductos
+as
+select p.idprodu, p.codbar, nomprodu, p.idcate, c.nomcate, p.entrada, p.salida, 
+	   p.precio, p.caracte, p.descripcion, imagen, p.estado
+from tb_productos p join tb_categorias c on p.idcate = c.idcate
+go
+
+/*LISTAR CATEGORIA*/
+CREATE PROCEDURE listarCategorias
+AS
+SELECT * FROM tb_categorias
+GO
+
+/*ELIMINAR CATEGORIA*/
+CREATE PROCEDURE eliminarCategoria
+@idcate int
+AS
+DELETE tb_categorias WHERE idcate=@idcate
+GO
+
+/*INSERTAR CATEGORIA*/
+CREATE PROCEDURE insertarCategoria
+@nomcate varchar(50),
+@descripcion text,
+@estado char(1)
+AS
+INSERT INTO tb_categorias(nomcate, descripcion, estado)
+	   VALUES(@nomcate, @descripcion, @estado)
+GO
+
+/*MODIFICAR CATEGORIA*/
+CREATE PROCEDURE modificarCategoria
+@idcate int,
+@nomcate varchar(50),
+@descripcion text,
+@estado char(1)
+AS
+UPDATE tb_categorias SET nomcate=@nomcate, descripcion=@descripcion, estado=@estado
+		             WHERE idcate=@idcate
+GO
+
+/*LISTAR USUARIO*/
+CREATE PROCEDURE listarUsuarios
+AS
+SELECT * FROM tb_usuarios
+GO
+
+/*ELIMINAR USUARIO*/
+CREATE PROCEDURE eliminarUsuario
+@idusu char(8)
+AS
+DELETE tb_usuarios WHERE idusu=@idusu
+GO
+
+/*INSERTAR USUARIO*/
+CREATE PROCEDURE insertarUsuario
+@nomusu varchar(30),
+@pass nvarchar(500),
+@tipusu varchar(50),
+@correo varchar(100),
+@direcenvio nvarchar(200),
+@tarjeta varchar(16),
+@estado char(1)
+AS
+INSERT INTO tb_usuarios(nomusu, pass, tipusu, correo, direcenvio, tarjeta, estado)
+	   VALUES(@nomusu, @pass, @tipusu, @direcenvio, @correo, @tarjeta, @estado)
+GO
+
+/*MODIFICAR USUARIO*/
+CREATE PROCEDURE modificarUsuario
+@idusu char(8),
+@nomusu varchar(30),
+@pass nvarchar(500),
+@tipusu varchar(50),
+@correo varchar(100),
+@direcenvio nvarchar(200),
+@tarjeta varchar(16),
+@estado char(1)
+AS
+UPDATE tb_usuarios SET nomusu=@nomusu, pass=@pass, tipusu=@tipusu, correo=@correo,
+					   direcenvio=@direcenvio, tarjeta=@tarjeta, estado=@estado
+		           WHERE idusu=@idusu
+GO
+
+/*DETALLE USUARIO*/
+CREATE PROCEDURE detalleUsuario
+@idusu char(8)
+AS
+SELECT * FROM tb_usuarios WHERE idusu=@idusu
+GO

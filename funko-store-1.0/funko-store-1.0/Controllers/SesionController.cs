@@ -42,7 +42,7 @@ namespace funko_store_1._0.Controllers
 
                 cmd.ExecuteNonQuery();
 
-                SqlCommand cmd2 = new SqlCommand("SELECT idusu FROM tb_usuarios order by idusu desc", cn);
+                SqlCommand cmd2 = new SqlCommand("SELECT idusu,tipusu FROM tb_usuarios order by idusu desc", cn);
                 SqlDataReader dr = cmd2.ExecuteReader();
 
                 if(Session["usuario"] == null)
@@ -50,6 +50,7 @@ namespace funko_store_1._0.Controllers
                     UsuarioSesion ususesion = new UsuarioSesion();
                     ususesion.idUsuSesion = dr.GetString(0);
                     ususesion.nomUsuSesion = nomusu;
+                    ususesion.tipo = dr.GetString(1);
                     Session["usuario"] = ususesion;
                 }
             }
@@ -101,6 +102,7 @@ namespace funko_store_1._0.Controllers
                     UsuarioSesion ususesion = new UsuarioSesion();
                     ususesion.idUsuSesion = dr.GetString(0);
                     ususesion.nomUsuSesion = dr.GetString(1);
+                    ususesion.tipo = dr.GetString(3);
                     Session["usuario"] = ususesion;
 
                 }

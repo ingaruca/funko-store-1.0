@@ -50,7 +50,7 @@ namespace funko_store_1._0.Controllers
         {
             if (!ModelState.IsValid)
             {
-                this.Request.Form["estado"];
+                //this.Request.Form["estado"];
                 return View(objusu);
             }
 

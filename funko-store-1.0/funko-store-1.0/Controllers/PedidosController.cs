@@ -19,7 +19,16 @@ namespace funko_store_1._0.Controllers
 
         public ActionResult Index()
         {
+            UsuarioSesion usu = (UsuarioSesion)Session["usuario"];
+
+            if(usu.tipo == "CLIENTE")
+            {
+                List<tb_pedido> listapedidos = data.tb_pedido.Where(p => p.idusu == usu.idUsuSesion).ToList<tb_pedido>();
+                return View(listapedidos);
+            }
+
             return View(data.tb_pedido.ToList());
+
         }
 
 

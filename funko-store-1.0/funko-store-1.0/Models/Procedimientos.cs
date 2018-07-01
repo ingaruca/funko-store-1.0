@@ -90,7 +90,7 @@ namespace funko_store_1._0.Models
 
             try
             {
-                SqlCommand cmd = new SqlCommand("eliminarProductos", cn);
+                SqlCommand cmd = new SqlCommand("eliminarProducto", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idprodu", pro);
                 int n = cmd.ExecuteNonQuery();
@@ -140,7 +140,7 @@ namespace funko_store_1._0.Models
         public List<tb_categorias> listarCategorias()
         {
             List<tb_categorias> listac = new List<tb_categorias>();
-            SqlCommand cmd = new SqlCommand("LISTARCATEGORIA", cn);
+            SqlCommand cmd = new SqlCommand("listarCategorias", cn);
             cn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -158,7 +158,7 @@ namespace funko_store_1._0.Models
 
         public Productos DetalleProducto(string id)
         {
-            SqlCommand cmd = new SqlCommand("DetalleProductos", cn);
+            SqlCommand cmd = new SqlCommand("detalleProducto", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idprodu", id);
             cn.Open();
@@ -193,7 +193,7 @@ namespace funko_store_1._0.Models
 
             try
             {
-                SqlCommand cmd = new SqlCommand("MODIFICARUSUARIO", cn);
+                SqlCommand cmd = new SqlCommand("modificarUsuario", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idusu", usu.idusu);
                 cmd.Parameters.AddWithValue("@nomusu", usu.nomusu);
@@ -226,7 +226,7 @@ namespace funko_store_1._0.Models
 
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERTARUSUARIO", cn);
+                SqlCommand cmd = new SqlCommand("insertarUsuario", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idusu", usu.idusu);
                 cmd.Parameters.AddWithValue("@nomusu", usu.nomusu);
@@ -259,7 +259,7 @@ namespace funko_store_1._0.Models
 
             try
             {
-                SqlCommand cmd = new SqlCommand("ELIMINARUSUARIO", cn);
+                SqlCommand cmd = new SqlCommand("eliminarUsuario", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idusu", usu);
                 int n = cmd.ExecuteNonQuery();
@@ -280,7 +280,7 @@ namespace funko_store_1._0.Models
         public List<tb_usuarios> LISTARUSUARIO()
         {
             List<tb_usuarios> listap = new List<tb_usuarios>();
-            SqlCommand cmd = new SqlCommand("LISTARUSUARIO", cn);
+            SqlCommand cmd = new SqlCommand("listarUsuarios", cn);
             cn.Open();
             SqlDataReader dr = cmd.ExecuteReader();
 
@@ -304,7 +304,7 @@ namespace funko_store_1._0.Models
 
         public tb_usuarios DETALLEUSUARIO(string id)
         {
-            SqlCommand cmd = new SqlCommand("DETALLEUSUARIO", cn);
+            SqlCommand cmd = new SqlCommand("detalleUsuario", cn);
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.Parameters.AddWithValue("@idusu", id);
             cn.Open();

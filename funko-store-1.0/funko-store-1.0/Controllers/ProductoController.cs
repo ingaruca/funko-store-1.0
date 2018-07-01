@@ -32,13 +32,15 @@ namespace funko_store_1._0.Controllers
         [HttpPost]
         public ActionResult Create(Productos objpro, HttpPostedFileBase imagen)
         {
+            string img = "";
             if (imagen != null)
             {
                 if (imagen.ContentLength > 0)
                 {
-                    var path = Path.Combine(Server.MapPath("~/Imagenes/"), imagen.FileName);
+                    var path = Path.Combine(Server.MapPath("../Imagenes/"), imagen.FileName);
 
-                    ViewBag.myimage = imagen.FileName;
+                    //ViewBag.myimage = imagen.FileName;
+                    img = imagen.FileName;
                     imagen.SaveAs(path);
                 }
             }
@@ -49,6 +51,7 @@ namespace funko_store_1._0.Controllers
                 return View(objpro);
             }
 
+            objpro.imagen = img;
             pro.insertarProducto(objpro);
 
             return RedirectToAction("Index");

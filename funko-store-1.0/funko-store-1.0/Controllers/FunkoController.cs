@@ -137,6 +137,12 @@ namespace funko_store_1._0.Controllers
         [HttpPost]
         public ActionResult Pago(string dni = null)
         {
+            if(Session["usuario"] == null)
+            {
+                return RedirectToAction("../Sesion/Login/");
+            }
+
+            UsuarioSesion usu = (UsuarioSesion)Session["usuario"];
             // OBTIENE EL ID DEL ULTIMO PEDIDO + 1
             int id = Autogenerar();
             SqlConnection cn = new SqlConnection(ConfigurationManager.ConnectionStrings["cnFunko"].ConnectionString);
@@ -148,8 +154,7 @@ namespace funko_store_1._0.Controllers
             {
                 string sql = "insert into tb_pedido (idusu,total,estado) values (@idusu,@monto,@estado)";
                 SqlCommand cmd = new SqlCommand(sql, cn, tr);
-                // ESTE USUARIO ES DE PRUEBA, PORQUE SE OBTENDRA ESE DATO CON LA SESSION USUARIO
-                cmd.Parameters.Add("@idusu", SqlDbType.Char, 8).Value = "USU00001";
+                cmd.Parameters.Add("@idusu", SqlDbType.Char, 8).Value = usu.idUsuSesion;
                 cmd.Parameters.Add("@monto", SqlDbType.Decimal).Value = Monto();
                 cmd.Parameters.Add("@estado", SqlDbType.Char, 10).Value = "PENDIENTE";
                 cmd.ExecuteNonQuery();
