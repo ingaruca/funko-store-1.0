@@ -4,15 +4,15 @@
     ViewBag.Title = "Pago";
 }
 
-<h2>Pago</h2>
-<div>@Html.ActionLink("Retornar","Index")</div>
+<h2 style="margin-bottom:20px">Pago</h2>
+<div style="margin-bottom:20px">@Html.ActionLink("Regresar a Inicio", "Index")</div>
 @using (Html.BeginForm())
 {
     // LOS DATOS LO JALA DE LA SESSION USUARIO
-    <div><input type="submit" value="Aceptar"></div>
+    <div style="margin-bottom:20px"><input type="submit" value="Aceptar Compra" class="btn btn-success"></div>
 
 }
 
 @Html.Partial("_PartialComprar")
-<div>Monto Total: @ViewBag.mt</div>
+<div class="h3"><strong>Total a pagar: @ViewBag.mt</strong></div>
 

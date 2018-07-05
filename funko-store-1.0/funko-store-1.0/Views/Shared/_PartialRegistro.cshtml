@@ -1,20 +1,14 @@
 ﻿@model funko_store_1._0.Models.tb_productos
-<link href="~/Content/MiEstilo.css" rel="stylesheet" />
-<div class="cuerpo">
-    <div class="agrega">
 
-        <table>
-            <tr>
-                <td>
-                    Codigo:@Model.idprodu<br />
-                    Categoria:@Model.tb_categorias.nomcate<br />
-                    Producto:@Model.nomprodu<br />
-                    Precio:@Model.precio<br />
-                </td>
-                <td>
-                    <img class="imagen" src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen)) />
-                </td>
-            </tr>
-        </table>
+
+<div class="jumbotron">
+    <div class="thumbnail">
+        <img src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen)) width="250px" />
     </div>
+    <h2>Producto: @Model.nomprodu</h2>
+    <p>Codigo: @Model.idprodu</p>
+    <p>Categoria: @Model.tb_categorias.nomcate</p>
+    <h4>Precio: @Model.precio</h4>
 </div>
+
+

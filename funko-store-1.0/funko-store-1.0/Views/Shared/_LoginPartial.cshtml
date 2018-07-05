@@ -4,18 +4,18 @@
 @if (Session["usuario"] != null)
 {
     UsuarioSesion usu = (UsuarioSesion)Session["usuario"];
-    
+
 
     using (Html.BeginForm("LogOut", "Sesion", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-    @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
-        <li>
-            @Html.ActionLink("Hola " + usu.nomUsuSesion + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
-    </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                @Html.ActionLink("Hola " + usu.nomUsuSesion + "!", "../Usuario/Edit", new { id = usu.idUsuSesion })
+            </li>
+            <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+        </ul>
     }
 }
 else

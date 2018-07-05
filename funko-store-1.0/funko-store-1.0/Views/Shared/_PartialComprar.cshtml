@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<funko_store_1._0.Models.Registro>
-<link href="~/Content/MiEstilo.css" rel="stylesheet" />
 
-<div class="cuerpo">
-    <table border="1" cellpadding="0" cellspacing="0" class="tabla">
+<div class="col-lg-8">
+    <table class="table table-bordered text-center">
         <tr>
-            <td>Codigo</td>
-            <td>Descripción</td>
-            <td>Precio</td>
-            <td>Cantidad</td>
-            <td>Monto</td>
-            <td></td>
-            <td></td>
+            <td><strong>Código</strong></td>
+            <td><strong>Descripción</strong></td>
+            <td><strong>Precio</strong></td>
+            <td><strong>Cantidad</strong></td>
+            <td><strong>Monto</strong></td>
+            <td><strong>Prevista</strong></td>
+            <td><strong>Acción</strong></td>
         </tr>
 
         @foreach (var reg in Model)
@@ -22,7 +21,7 @@
                 <td>@reg.cantidad</td>
                 <td>@reg.monto</td>
                 <td>
-                    <img class="imagen" src="@Url.Content(string.Format("../imagenes/{0}.png",@reg.id))" />
+                    <img width="80px" height="80px" src="@Url.Content(string.Format("../imagenes/{0}.png",@reg.id))" />
                 </td>
                 <td>@Html.ActionLink("Eliminar", "Eliminar", new { id = @reg.id })</td>
             </tr>

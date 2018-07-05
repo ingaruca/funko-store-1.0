@@ -4,22 +4,22 @@
     ViewBag.Title = "Comprar";
 }
 
-<h2>Comprar</h2>
+<h2 style="margin-bottom:20px">Detalle de Compra</h2>
 <div>
     @Html.Partial("_PartialComprar")
 
 </div>
 <br />
 
-<div>
+<div style="margin-bottom: 10px">
 
-    Monto Total: @ViewBag.mt
+    <strong>Total: @ViewBag.mt</strong>
 </div>
 
-<div>
-    @Html.ActionLink("Realizar Pago", "Pago")
+<div style="margin-bottom: 20px">
+    @Html.ActionLink("Realizar Pago", "Pago", new { }, htmlAttributes: new { @class = "btn btn-success" })
 </div>
 <div>
-    @Html.ActionLink("Seguir Comprando", "Index")
+    @Html.ActionLink("Seguir Comprando", "Index", new { }, htmlAttributes: new { @class = "btn btn-primary" })
 </div>
 

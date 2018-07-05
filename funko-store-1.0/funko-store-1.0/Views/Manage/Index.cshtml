@@ -36,33 +36,29 @@
              
              Quite la marca de comentario del siguiente bloque una vez haya configurado la autenticación en dos fases
         *@
-        @*  
+        
             <dt>Número de teléfono:</dt>
             <dd>
                 @(Model.PhoneNumber ?? "None")
                 @if (Model.PhoneNumber != null)
                 {
                     <br />
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Change", "AddPhoneNumber")&nbsp;&nbsp;]</text>
+                    @Html.ActionLink("Change", "AddPhoneNumber")
                     using (Html.BeginForm("RemovePhoneNumber", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
-                        <text>[<input type="submit" value="Remove" class="btn-link" />]</text>
+                        <input type="submit" value="Remove" class="btn-link" />
                     }
                 }
                 else
                 {
-                    <text>[&nbsp;&nbsp;@Html.ActionLink("Add", "AddPhoneNumber")
+                    @Html.ActionLink("Add", "AddPhoneNumber")
                 }
             </dd>
-        *@
+        
         <dt>Autenticación de dos factores:</dt>
         <dd>
-            <p>
-                No hay ningún proveedor de autenticación en dos fases configurado. Consulte <a href="http://go.microsoft.com/fwlink/?LinkId=403804">este artículo</a>
-                para obtener más información acerca de la configuración de esta aplicación ASP.NET para admitir la autenticación en dos fases.
-            </p>
-            @*@if (Model.TwoFactor)
+            @if (Model.TwoFactor)
                 {
                     using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                     {
@@ -81,7 +77,7 @@
                         <input type="submit" value="Habilitar" class="btn btn-link" />
                         </text>
                     }
-                }*@
+                }
         </dd>
     </dl>
 </div>

@@ -1,0 +1,95 @@
+﻿@model IEnumerable<funko_store_1._0.Models.tb_pedido>
+@{
+    ViewBag.Title = "buscarxUsu";
+}
+
+@section Scripts
+{
+<script type="text/javascript">
+
+        $(function () {
+            $("#btnSubmit").click(function () {
+                $("input[name='nomCliente']").val($("#Reporte").html());
+            });
+        });
+</script>
+   
+}
+
+<h2>Generar Reportes</h2>
+
+<button id="boton">Mira</button>
+
+@using (Html.BeginForm("Index", "Reporte", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+    <div class="form-group">
+        <label for="idusu">Usuario:</label>
+        @Html.DropDownList("idusu",(SelectList)ViewBag.usuario,"Seleccione", new { @class="form-control" })
+    </div>
+    <div class="form-group">
+        <label for="fecha1">Fecha: Desde </label>
+        <input class="form-control" type="date" name="fecha1" id="fecha1" />
+        <label for="fecha2">Hasta </label>
+        <input class="form-control" type="date" name="fecha2" id="fecha2" />
+    </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-success" value="Generar" />
+    </div>
+}
+
+<div id="Reporte">
+
+<table class="table">
+    <tr>
+        <th>
+            IdPedido
+        </th>
+        <th>
+            Fecha
+        </th>
+        <th>
+            Usuario
+        </th>
+        <th>
+            Importe
+        </th>
+        <th>
+            Estado
+        </th>
+    </tr>
+
+ @foreach (var item in Model)
+ {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idpedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecpedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idusu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.estado)
+        </td>
+    </tr>
+ }
+
+</table>
+
+</div>
+@using (Html.BeginForm("Export", "Reporte", FormMethod.Post))
+{
+    <input type="hidden" name="nomCliente" />
+        <input type="submit" id="btnSubmit" value="Export" />
+}
+
+
+
+

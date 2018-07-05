@@ -4,10 +4,10 @@
     ViewBag.Title = "Seleccionar";
 }
 
-<h2>Seleccionar</h2>
+<h2>Seleccionar Producto</h2>
 
-<div>
-    @Html.ActionLink("Principal", "Index")
+<div style="margin-bottom: 20px">
+    @Html.ActionLink("Regresar", "Index")
 
 </div>
 
@@ -19,9 +19,12 @@
         <label for="cantidad">Cantidad: </label>
         <input class="form-control" type="number" id="cantidad" name="cantidad" value="1" />
     </div>
-    <div>
-        <input type="submit" value="Agregar" />
+    <br />
+    <div style="margin-top: 5px">
+        <!--<input type="submit" value="Agregar al carrito" class="btn btn-success" />-->
+        <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-shopping-cart" style="color:white"></span> Agregar al carrito</button>
     </div>
+    <br />
 }
 
 

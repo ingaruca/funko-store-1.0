@@ -11,6 +11,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using funko_store_1._0.Models;
+using System.Configuration;
+using Twilio.Types;
+using Twilio.Rest.Api.V2010.Account;
 
 namespace funko_store_1._0
 {
@@ -27,7 +30,23 @@ namespace funko_store_1._0
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Conecte el servicio SMS aquí para enviar un mensaje de texto.
+            var idTwilio = ConfigurationManager.AppSettings["IdTwilio"];
+
+            var passwordTwilio = ConfigurationManager.AppSettings["passwordTwilio"];
+
+            var numeroDesde = ConfigurationManager.AppSettings["numeroDesde"];
+
+            Twilio.TwilioClient.Init(idTwilio, passwordTwilio);
+
+            var to = new PhoneNumber(message.Destination);
+
+            var from = new PhoneNumber(numeroDesde);
+
+            var Mensaje = MessageResource.Create(
+                to: to,
+                from: from,
+                body: message.Body);
+
             return Task.FromResult(0);
         }
     }

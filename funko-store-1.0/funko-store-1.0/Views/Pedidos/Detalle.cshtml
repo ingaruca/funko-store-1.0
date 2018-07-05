@@ -1,0 +1,93 @@
+﻿@model IEnumerable<funko_store_1._0.Models.tb_detapedido>
+
+@{
+    ViewBag.Title = "Detalle Pedido: "+ViewBag.idpedi;
+    decimal total = 0;
+    string accion = "";
+    if(ViewBag.tipo == "CLIENTE")
+    {
+        accion = "Eliminar";
+    }else
+    {
+        accion = "Confirmar";
+    }
+}
+@section Scripts
+{
+<script>
+    var s = "@ViewBag.s";
+    if (s.trim() == "ENTREGADO") {
+        document.getElementById("confir").disabled = true;
+    }
+</script>
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p class="col-md-13" align="right">
+    @Html.ActionLink("Duplicar", "Duplicar",null,new { @class="btn btn-success" })
+</p>
+<table class="table table-striped table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idpedido)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.idprodu)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.precio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cantidad)
+        </th>
+        <th>
+            Total
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    total += (item.precio * item.cantidad);
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.idpedido)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.idprodu)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.precio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.cantidad)
+        </td>
+        <td>
+            @(item.precio*item.cantidad)
+        </td>
+    </tr>
+}
+</table>
+    <div style="font-style:inherit; font-size:large">
+      <p>
+          Importe Total S/@total
+      </p>
+    </div>
+
+@using (Html.BeginForm(accion, "Pedidos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-10">
+            <input type="hidden" name="idpedi" value="@ViewBag.idpedi" />
+            @if (ViewBag.tipo == "CLIENTE")
+            {
+                <input type="submit" id="confir" value="Eliminar Pedido" class="btn btn-danger" />
+            }else
+            {
+                <input type="submit" id="confir" value="Confirmar Pedido" class="btn btn-success" />
+            }
+        </div>
+        <div class="col-md-2" align="right">
+                @Html.ActionLink("Regresar", "Index",null,new { @class="btn btn-dark" })
+        </div>
+    </div>
+}

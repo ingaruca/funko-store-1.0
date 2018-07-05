@@ -7,6 +7,8 @@ using System.Configuration;
 using System.Data.SqlClient;
 
 using funko_store_1._0.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace funko_store_1._0.Controllers
 {
@@ -36,7 +38,7 @@ namespace funko_store_1._0.Controllers
             {
                 SqlCommand cmd = new SqlCommand("INSERT INTO tb_usuarios(nomusu, pass, tipusu, estado) VALUES(@usu, @pass, @tipo, @estado)", cn);
                 cmd.Parameters.AddWithValue("@usu", nomusu);
-                cmd.Parameters.AddWithValue("@pass", pass);
+                cmd.Parameters.AddWithValue("@pass", GenerateSHA512String(pass));
                 cmd.Parameters.AddWithValue("@tipo", "CLIENTE");
                 cmd.Parameters.AddWithValue("@estado", "A");
 
@@ -89,22 +91,29 @@ namespace funko_store_1._0.Controllers
             {
                 SqlCommand cmd = new SqlCommand("SELECT * FROM tb_usuarios where nomusu = @usu and pass = @pass and estado = 'A'", cn);
                 cmd.Parameters.AddWithValue("@usu", nomusu);
-                cmd.Parameters.AddWithValue("@pass", pass);          
-                                               
+                cmd.Parameters.AddWithValue("@pass", GenerateSHA512String(pass));
+
                 SqlDataReader dr = cmd.ExecuteReader();
-
-                if (dr.Read())
+                if (dr.HasRows)
                 {
-                    if (Session["usuario"] != null)
-                    {
-                        Session["usuario"] = null;
-                    }
-                    UsuarioSesion ususesion = new UsuarioSesion();
-                    ususesion.idUsuSesion = dr.GetString(0);
-                    ususesion.nomUsuSesion = dr.GetString(1);
-                    ususesion.tipo = dr.GetString(3);
-                    Session["usuario"] = ususesion;
 
+                    if (dr.Read())
+                    {
+                        if (Session["usuario"] != null)
+                        {
+                            Session["usuario"] = null;
+                        }
+                        UsuarioSesion ususesion = new UsuarioSesion();
+                        ususesion.idUsuSesion = dr.GetString(0);
+                        ususesion.nomUsuSesion = dr.GetString(1);
+                        ususesion.tipo = dr.GetString(3);
+                        Session["usuario"] = ususesion;
+
+                    }
+                }else
+                {
+                    //ViewBag.msg = "Usuario Invalido";
+                    return View(new tb_usuarios());
                 }
 
             }
@@ -116,7 +125,7 @@ namespace funko_store_1._0.Controllers
             {
                 cn.Close();
             }
-
+            ViewBag.msg = "SI";
             return RedirectToAction("../Funko/Index");
 
         }
@@ -125,6 +134,24 @@ namespace funko_store_1._0.Controllers
         {
             Session["usuario"] = null;
             return RedirectToAction("../Funko/Index");
+        }
+
+        public static string GenerateSHA512String(string inputString)
+        {
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+            byte[] hash = sha512.ComputeHash(bytes);
+            return GetStringFromHash(hash);
+        }
+
+        private static string GetStringFromHash(byte[] hash)
+        {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                result.Append(hash[i].ToString("X2"));
+            }
+            return result.ToString();
         }
 
     }
