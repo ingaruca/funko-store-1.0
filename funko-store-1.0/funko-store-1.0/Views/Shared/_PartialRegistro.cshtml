@@ -1,14 +1,106 @@
 ﻿@model funko_store_1._0.Models.tb_productos
 
 
-<div class="jumbotron">
-    <div class="thumbnail">
-        <img src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen)) width="250px" />
-    </div>
-    <h2>Producto: @Model.nomprodu</h2>
-    <p>Codigo: @Model.idprodu</p>
-    <p>Categoria: @Model.tb_categorias.nomcate</p>
-    <h4>Precio: @Model.precio</h4>
-</div>
+<div class="card">
+    <div class="row no-gutters">
+        <aside class="col-sm-5 border-right">
+            <article class="gallery-wrap">
+                <div class="img-big-wrap">
+                    <div> <a href=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen)) data-fancybox=""><img src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen))></a></div>
+                </div> <!-- slider-product.// -->
+                <div class="img-small-wrap">
+                    <div class="item-gallery"> <img src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen))></div>
+                    <div class="item-gallery"> <img src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen))></div>
+                    <div class="item-gallery"> <img src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen))></div>
+                    <div class="item-gallery"> <img src=@Url.Content(string.Format("../../imagenes/{0}",Model.imagen))></div>
+                </div> <!-- slider-nav.// -->
+            </article> <!-- gallery-wrap .end// -->
+        </aside>
+        <aside class="col-sm-7">
+            <article class="p-5">
+                <h3 class="title mb-3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.nomprodu</font></font></h3>
+
+                <div class="mb-3">
+                    <var class="price h3 text-warning">
+                        <span class="currency"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">S/ </font></font></span><span class="num"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.precio</font></font></span>
+                    </var>
+                    <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> / por und</font></font></span>
+                </div> <!-- price-detail-wrap .// -->
+                <dl>
+                    <dt><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Descripción</font></font></dt>
+                    <dd><p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">@Model.descripcion</font></font></p></dd>
+                </dl>
+                <dl class="row">
+                    <dt class="col-sm-3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Modelo#</font></font></dt>
+                    <dd class="col-sm-9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">12345611</font></font></dd>
+
+                    <dt class="col-sm-3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Color</font></font></dt>
+                    <dd class="col-sm-9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">En blanco y negro </font></font></dd>
+
+                    <dt class="col-sm-3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Entrega</font></font></dt>
+                    <dd class="col-sm-9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rusia, Estados Unidos y Europa </font></font></dd>
+                </dl>
+                <div class="rating-wrap">
+
+                    <ul class="rating-stars">
+                        <li style="width:80%" class="stars-active">
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </li>
+                        <li>
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </li>
+                    </ul>
+                    <div class="label-rating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">132 opiniones</font></font></div>
+                    <div class="label-rating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">154 órdenes </font></font></div>
+                </div> <!-- rating-wrap.// -->
+                <hr>
+                @using (Html.BeginForm())
+                {
+                <div class="row">
+                    <div class="col-sm-5">
+                        <dl class="dlist-inline">
+                            <dt><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cantidad: </font></font></dt>
+                            <dd>
+                                <select class="form-control form-control-sm" style="width:70px;" id="cantidad" name="cantidad">
+                                    <option value="1"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 1 </font></font></option>
+                                    <option value="2"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 2 </font></font></option>
+                                    <option value="3"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> 3 </font></font></option>
+                                </select>
+                            </dd>
+                        </dl>  <!-- item-property .// -->
+                    </div> <!-- col.// -->
+                    <div class="col-sm-7">
+                        <dl class="dlist-inline">
+                            <dt><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Tamaño: </font></font></dt>
+                            <dd>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <span class="form-check-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SM</font></font></span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <span class="form-check-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Maryland</font></font></span>
+                                </label>
+                                <label class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                                    <span class="form-check-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">XXL</font></font></span>
+                                </label>
+                            </dd>
+                        </dl>  <!-- item-property .// -->
+                    </div> <!-- col.// -->
+                </div> <!-- row.// -->
+                <hr>
+                <a href="#" class="btn  btn-primary"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Compra ahora </font></font></a>
+                <button type="submit" class="btn btn-outline-primary"> <i class="fas fa-shopping-cart"></i><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Añadir a la cesta </font></font></button>
+                }
+            </article> <!-- card-body.// -->
+        </aside> <!-- col.// -->
+    </div> <!-- row.// -->
+</div> <!-- card.// -->
+
 
 

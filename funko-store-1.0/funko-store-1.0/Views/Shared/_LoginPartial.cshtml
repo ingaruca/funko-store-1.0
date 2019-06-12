@@ -1,27 +1,29 @@
 ﻿@using Microsoft.AspNet.Identity
 @using funko_store_1._0.Models;
 
-@if (Session["usuario"] != null)
-{
-    UsuarioSesion usu = (UsuarioSesion)Session["usuario"];
-
-
-    using (Html.BeginForm("LogOut", "Sesion", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+<div class="collapse navbar-collapse justify-content-end" id="navbarCollapse">
+    @if (Session["usuario"] != null)
     {
-        @Html.AntiForgeryToken()
+        UsuarioSesion usu = (UsuarioSesion)Session["usuario"];
 
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                @Html.ActionLink("Hola " + usu.nomUsuSesion + "!", "../Usuario/Edit", new { id = usu.idUsuSesion })
-            </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+
+        using (Html.BeginForm("LogOut", "Sesion", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    @Html.ActionLink("Hola " + usu.nomUsuSesion + "!", "Edit", "Usuario", new { id = usu.idUsuSesion }, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item"><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
+            </ul>
+        }
+    }
+    else
+    {
+        <ul class="navbar-nav">
+            <li class="nav-item">@Html.ActionLink("Registrarse", "Registro", "Sesion", new { id = "registerLink" }, new { @class = "nav-link" })</li>
+            <li class="nav-item">@Html.ActionLink("Iniciar sesión", "Login", "Sesion", new { id = "loginLink" }, new { @class = "nav-link" })</li>
         </ul>
     }
-}
-else
-{
-    <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Registrarse", "Registro", "Sesion", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
-        <li>@Html.ActionLink("Iniciar sesión", "Login", "Sesion", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-    </ul>
-}
+</div>
