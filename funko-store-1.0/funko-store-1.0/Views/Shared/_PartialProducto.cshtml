@@ -1,7 +1,7 @@
-﻿@model IEnumerable<funko_store_1._0.Models.tb_productos>
+﻿@model funko_store_1._0.ViewModels.IndexViewModel
 
 <main class="col-sm-9">
-    @foreach (var reg in Model)
+    @foreach (var reg in Model.productos)
     {
         <article class="card card-product">
             <div class="card-body">
@@ -61,4 +61,5 @@
             </div> <!-- card-body .// -->
         </article> <!-- card product .// -->
     }
+    @{Html.RenderPartial("_paginador", Model);}
 </main> <!-- col.// -->

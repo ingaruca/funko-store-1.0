@@ -419,6 +419,6 @@ D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\Microsoft
 D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\Microsoft.Owin.Security.Google.resources.dll
 D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\Microsoft.Owin.Security.Twitter.resources.dll
 D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\bin\es\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
-D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\obj\Debug\funko-store-1.0.csprojResolveAssemblyReference.cache
 D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\obj\Debug\funko-store-1.0.dll
 D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\obj\Debug\funko-store-1.0.pdb
+D:\Repositorios\funko-store-1.0\funko-store-1.0\funko-store-1.0\obj\Debug\funko-store-1.0.csprojResolveAssemblyReference.cache

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 // INGARUKA LE PUSO 1.0 POR ESO EL "1._0" >:v 
 using funko_store_1._0.Models;
+using funko_store_1._0.ViewModels;
 using System.Data;
 using System.Data.SqlClient;
 using System.Transactions;
@@ -42,15 +43,29 @@ namespace funko_store_1._0.Controllers
         #endregion Metodos
 
         #region Index
-        public ActionResult Index()
+        public ActionResult Index(int pagina = 1)
         {
+            var cantidadRegistrosPorPagina = 5; // parámetro
+
             if (Session["carrito"] == null)
             {
                 List<Registro> detalle = new List<Registro>();
                 Session["carrito"] = detalle;
             }
 
-            return View(data.tb_productos.ToList());
+            var productos = data.tb_productos.OrderBy(x => x.idprodu)
+                    .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+                    .Take(cantidadRegistrosPorPagina).ToList();
+            var totalDeRegistros = data.tb_productos.Count();
+
+            var modelo = new ViewModels.IndexViewModel();
+            modelo.productos = productos;
+            modelo.PaginaActual = pagina;
+            modelo.TotalDeRegistros = totalDeRegistros;
+            modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;
+
+            return View(modelo);
+
         }
 
         #endregion Index
