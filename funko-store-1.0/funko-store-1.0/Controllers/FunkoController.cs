@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 // INGARUKA LE PUSO 1.0 POR ESO EL "1._0" >:v 
 using funko_store_1._0.Models;
 using funko_store_1._0.ViewModels;
@@ -43,7 +44,7 @@ namespace funko_store_1._0.Controllers
         #endregion Metodos
 
         #region Index
-        public ActionResult Index(int pagina = 1)
+        public ActionResult Index(int pagina = 1, int? cate = 0)
         {
             var cantidadRegistrosPorPagina = 5; // parámetro
 
@@ -53,13 +54,38 @@ namespace funko_store_1._0.Controllers
                 Session["carrito"] = detalle;
             }
 
-            var productos = data.tb_productos.OrderBy(x => x.idprodu)
-                    .Skip((pagina - 1) * cantidadRegistrosPorPagina)
-                    .Take(cantidadRegistrosPorPagina).ToList();
-            var totalDeRegistros = data.tb_productos.Count();
+            // CATEGORIAS
+            var categorias = data.tb_categorias.ToList();
 
+            var productos = new List<tb_productos>();
+            var totalDeRegistros = 0;
+
+            if (cate != 0)
+            {
+                Func<tb_productos, bool> condicion = c => cate.Value == c.idcate; 
+
+                productos = data.tb_productos.Where(condicion).OrderBy(x => x.idprodu)
+                        .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+                        .Take(cantidadRegistrosPorPagina).ToList();
+                totalDeRegistros = data.tb_productos.Where(condicion).OrderBy(x => x.idprodu).ToList().Count;
+                ViewBag.idcate = cate;
+                var categoria = categorias.Where(c => cate.Value == c.idcate).Single();
+                ViewBag.categoria = "| " + categoria.nomcate;
+            }
+            else
+            {
+                productos = data.tb_productos.OrderBy(x => x.idprodu)
+                        .Skip((pagina - 1) * cantidadRegistrosPorPagina)
+                        .Take(cantidadRegistrosPorPagina).ToList();
+                totalDeRegistros = data.tb_productos.OrderBy(x => x.idprodu).ToList().Count;
+                ViewBag.idcate = cate;
+                ViewBag.categoria = "";
+            }
+
+            Debug.WriteLine("Total de Registros:" + totalDeRegistros);
             var modelo = new ViewModels.IndexViewModel();
             modelo.productos = productos;
+            modelo.categorias = categorias;
             modelo.PaginaActual = pagina;
             modelo.TotalDeRegistros = totalDeRegistros;
             modelo.RegistrosPorPagina = cantidadRegistrosPorPagina;

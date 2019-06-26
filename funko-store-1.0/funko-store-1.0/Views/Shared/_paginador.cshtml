@@ -8,7 +8,7 @@
 
 @{
     int Inicial = 1;
-    var radio = 2;
+    var radio = 1;
     var cantidadMaximaDePaginas = radio * 2 + 1;
     int Final = (cantidadPaginas > cantidadMaximaDePaginas) ? cantidadMaximaDePaginas : cantidadPaginas;
     if (Model.PaginaActual > radio + 1)
@@ -26,34 +26,34 @@
 }
 
 
-<ul class="pagination">
-    <li class="page-item">@Html.ActionLink("Primera", null, new { pagina = 1 }, new { @class = "page-link" })</li>
+<ul class="pagination justify-content-end">
+    <li class="page-item">@Html.ActionLink("Primera", null, new { pagina = 1, cate = ViewBag.idcate}, new { @class = "page-link" })</li>
     @if (Model.PaginaActual == 1)
     {
-        <li class="page-item disabled">@Html.ActionLink("<", null, new { pagina = 1 }, new { @class = "page-link" })</li>
+        <li class="page-item disabled">@Html.ActionLink("<", null, new { pagina = 1, cate = ViewBag.idcate }, new { @class = "page-link" })</li>
     }
     else
     {
-        <li class="page-item">@Html.ActionLink("<", null, new { pagina = Model.PaginaActual - 1 }, new { @class = "page-link" })</li>
+        <li class="page-item">@Html.ActionLink("<", null, new { pagina = Model.PaginaActual - 1, cate = ViewBag.idcate }, new { @class = "page-link" })</li>
     }
     @for (int i = Inicial; i <= Final; i++)
     {
         if (i == Model.PaginaActual)
         {
-            <li class="page-item active">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "page-link" })</li>
+            <li class="page-item active">@Html.ActionLink(i.ToString(), null, new { pagina = i, cate = ViewBag.idcate }, new { @class = "page-link" })</li>
         }
         else
         {
-            <li class="page-item">@Html.ActionLink(i.ToString(), null, new { pagina = i }, new { @class = "page-link" })</li>
+            <li class="page-item">@Html.ActionLink(i.ToString(), null, new { pagina = i, cate = ViewBag.idcate }, new { @class = "page-link" })</li>
         }
     }
     @if (Model.PaginaActual == cantidadPaginas)
     {
-        <li class="page-item disabled">@Html.ActionLink(">", null, new { pagina = cantidadPaginas }, new { @class = "page-link" })</li>
+        <li class="page-item disabled">@Html.ActionLink(">", null, new { pagina = cantidadPaginas, cate = ViewBag.idcate }, new { @class = "page-link" })</li>
     }
     else
     {
-        <li class="page-item">@Html.ActionLink(">", null, new { pagina = Model.PaginaActual + 1 }, new { @class = "page-link" })</li>
+        <li class="page-item">@Html.ActionLink(">", null, new { pagina = Model.PaginaActual + 1, cate = ViewBag.idcate }, new { @class = "page-link" })</li>
     }
-    <li class="page-item">@Html.ActionLink("Ultima", null, new { pagina = cantidadPaginas }, new { @class = "page-link" })</li>
+    <li class="page-item">@Html.ActionLink("Ultima", null, new { pagina = cantidadPaginas, cate = ViewBag.idcate }, new { @class = "page-link" })</li>
 </ul>

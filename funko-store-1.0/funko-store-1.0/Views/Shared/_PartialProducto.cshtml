@@ -1,65 +1,73 @@
 ﻿@model funko_store_1._0.ViewModels.IndexViewModel
 
 <main class="col-sm-9">
-    @foreach (var reg in Model.productos)
-    {
-        <article class="card card-product">
-            <div class="card-body">
-                <div class="row">
-                    <aside class="col-sm-3">
-                        <div class="img-wrap"><img src=@Url.Content(string.Format("../Imagenes/{0}", @reg.imagen)) alt="@reg.nomprodu"></div>
-                    </aside> <!-- col.// -->
-                    <article class="col-sm-6">
-                        <h4 class="title"> @reg.nomprodu </h4>
-                        <div class="rating-wrap  mb-2">
-                            <ul class="rating-stars">
-                                <li style="width:80%" class="stars-active">
-                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </li>
-                                <li>
-                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </li>
-                            </ul>
-                            <div class="label-rating">132 reviews</div>
-                            <div class="label-rating">154 orders </div>
-                        </div> <!-- rating-wrap.// -->
-                        <p> @reg.descripcion </p>
-                        <dl class="dlist-align">
-                            <dt>Color</dt>
-                            <dd>Black and white</dd>
-                        </dl>  <!-- item-property-hor .// -->
-                        <dl class="dlist-align">
-                            <dt>Material</dt>
-                            <dd>Syntetic, wooden</dd>
-                        </dl>  <!-- item-property-hor .// -->
-                        <dl class="dlist-align">
-                            <dt>Delivery</dt>
-                            <dd>Russia, USA, and Europe</dd>
-                        </dl>  <!-- item-property-hor .// -->
-
-                    </article> <!-- col.// -->
-                    <aside class="col-sm-3 border-left">
-                        <div class="action-wrap">
-                            <div class="price-wrap h4">
-                                <span class="price"> @reg.precio </span>
-                                <del class="price-old"> $98</del>
-                            </div> <!-- info-price-detail // -->
-                            <p class="text-success">Free shipping</p>
-                            <br>
-                            <p>
-                                <a href="#" class="btn btn-primary"> Buy now </a>
-                                @Html.ActionLink("Detalles", "Seleccionar", new { id = reg.idprodu }, htmlAttributes: new { @class = "btn btn-secondary" })
-                            </p>
-                            <a href="#"><i class="fa fa-heart"></i> Add to wishlist</a>
-                        </div> <!-- action-wrap.// -->
-                    </aside> <!-- col.// -->
-                </div> <!-- row.// -->
-            </div> <!-- card-body .// -->
-        </article> <!-- card product .// -->
-    }
+    <h2>@Html.ActionLink("Inicio", null, "", new { @class = "" }) @ViewBag.categoria</h2>
     @{Html.RenderPartial("_paginador", Model);}
+        @if (Model.productos.Count == 0)
+        {
+            <div class="alert alert-secondary">
+                No se encontraron elementos.
+            </div>
+        }
+        @foreach (var reg in Model.productos)
+        {
+            <article class="card card-product">
+                <div class="card-body">
+                    <div class="row">
+                        <aside class="col-sm-3">
+                            <div class="img-wrap"><img src=@Url.Content(string.Format("../Imagenes/{0}", @reg.imagen)) alt="@reg.nomprodu"></div>
+                        </aside> <!-- col.// -->
+                        <article class="col-sm-6">
+                            <h4 class="title"> @reg.nomprodu </h4>
+                            <div class="rating-wrap  mb-2">
+                                <ul class="rating-stars">
+                                    <li style="width:80%" class="stars-active">
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i> <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </li>
+                                </ul>
+                                <div class="label-rating">132 reviews</div>
+                                <div class="label-rating">154 orders </div>
+                            </div> <!-- rating-wrap.// -->
+                            <p> @reg.descripcion </p>
+                            <dl class="dlist-align">
+                                <dt>Color</dt>
+                                <dd>Black and white</dd>
+                            </dl>  <!-- item-property-hor .// -->
+                            <dl class="dlist-align">
+                                <dt>Material</dt>
+                                <dd>Syntetic, wooden</dd>
+                            </dl>  <!-- item-property-hor .// -->
+                            <dl class="dlist-align">
+                                <dt>Delivery</dt>
+                                <dd>Russia, USA, and Europe</dd>
+                            </dl>  <!-- item-property-hor .// -->
+
+                        </article> <!-- col.// -->
+                        <aside class="col-sm-3 border-left">
+                            <div class="action-wrap">
+                                <div class="price-wrap h4">
+                                    <span class="price"> S/@reg.precio </span>
+                                    <del class="price-old"> $98</del>
+                                </div> <!-- info-price-detail // -->
+                                <p class="text-success">Free shipping</p>
+                                <br>
+                                <p>
+                                    <a href="#" class="btn btn-primary"> Buy now </a>
+                                    @Html.ActionLink("Detalles", "Seleccionar", new { id = reg.idprodu }, htmlAttributes: new { @class = "btn btn-secondary" })
+                                </p>
+                                <a href="#"><i class="fa fa-heart"></i> Add to wishlist</a>
+                            </div> <!-- action-wrap.// -->
+                        </aside> <!-- col.// -->
+                    </div> <!-- row.// -->
+                </div> <!-- card-body .// -->
+            </article> <!-- card product .// -->
+        }
+        @{Html.RenderPartial("_paginador", Model);}
 </main> <!-- col.// -->

@@ -5,6 +5,8 @@ using System.Web;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Mvc;
+using System.Diagnostics;
 
 namespace funko_store_1._0.Models
 {
@@ -25,8 +27,6 @@ namespace funko_store_1._0.Models
                 cmd.Parameters.AddWithValue("@codbar", pro.codbar);
                 cmd.Parameters.AddWithValue("@nomprodu", pro.nomprodu);
                 cmd.Parameters.AddWithValue("@idcate", pro.idcate);
-                cmd.Parameters.AddWithValue("@entrada", pro.entrada);
-                cmd.Parameters.AddWithValue("@salida", pro.salida);
                 cmd.Parameters.AddWithValue("@precio", pro.precio);
                 cmd.Parameters.AddWithValue("@caracte", pro.caracte);
                 cmd.Parameters.AddWithValue("@descripcion", pro.descripcion);
@@ -45,6 +45,8 @@ namespace funko_store_1._0.Models
                 cn.Close();
             }
 
+            Debug.WriteLine(mensaje);
+
             return mensaje;
         }
 
@@ -60,8 +62,6 @@ namespace funko_store_1._0.Models
                 cmd.Parameters.AddWithValue("@codbar", pro.codbar);
                 cmd.Parameters.AddWithValue("@nomprodu", pro.nomprodu);
                 cmd.Parameters.AddWithValue("@idcate", pro.idcate);
-                cmd.Parameters.AddWithValue("@entrada", pro.entrada);
-                cmd.Parameters.AddWithValue("@salida", pro.salida);
                 cmd.Parameters.AddWithValue("@precio", pro.precio);
                 cmd.Parameters.AddWithValue("@caracte", pro.caracte);
                 cmd.Parameters.AddWithValue("@descripcion", pro.descripcion);
@@ -79,6 +79,8 @@ namespace funko_store_1._0.Models
             {
                 cn.Close();
             }
+
+            Debug.WriteLine(mensaje);
 
             return mensaje;
         }
@@ -104,6 +106,8 @@ namespace funko_store_1._0.Models
             {
                 cn.Close();
             }
+
+            Debug.WriteLine(msg);
 
             return msg;
         }
@@ -172,8 +176,6 @@ namespace funko_store_1._0.Models
                 reg.nomprodu = dr["nomprodu"].ToString();
                 reg.idcate = Convert.ToInt32(dr["idcate"].ToString());
                 reg.nomcate = dr["nomcate"].ToString();
-                reg.entrada = Convert.ToInt32(dr["entrada"].ToString());
-                reg.salida = Convert.ToInt32(dr["salida"].ToString());
                 reg.precio = Convert.ToDecimal(dr["precio"].ToString());
                 reg.caracte = dr["caracte"].ToString();
                 reg.descripcion = dr["descripcion"].ToString();
@@ -216,6 +218,8 @@ namespace funko_store_1._0.Models
                 cn.Close();
             }
 
+            Debug.WriteLine(mensaje);
+
             return mensaje;
         }
 
@@ -249,6 +253,8 @@ namespace funko_store_1._0.Models
                 cn.Close();
             }
 
+            Debug.WriteLine(mensaje);
+
             return mensaje;
         }
 
@@ -273,6 +279,8 @@ namespace funko_store_1._0.Models
             {
                 cn.Close();
             }
+
+            Debug.WriteLine(msg);
 
             return msg;
         }
@@ -325,6 +333,16 @@ namespace funko_store_1._0.Models
             dr.Close();
             cn.Close();
             return reg;
+        }
+
+        public List<SelectListItem> Estados()
+        {
+            List<SelectListItem> lst = new List<SelectListItem>();
+
+            lst.Add(new SelectListItem() { Text = "Activo", Value = "A" });
+            lst.Add(new SelectListItem() { Text = "Inactivo", Value = "I" });
+
+            return lst;
         }
 
     }

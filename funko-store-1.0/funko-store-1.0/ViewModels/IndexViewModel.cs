@@ -9,5 +9,6 @@ namespace funko_store_1._0.ViewModels
     public class IndexViewModel : BaseModelo
     {
         public List<tb_productos> productos { get; set; }
+        public List<tb_categorias> categorias { get; set; }
     }
 }

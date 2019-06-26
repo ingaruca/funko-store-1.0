@@ -13,6 +13,7 @@ namespace funko_store_1._0.Controllers
     public class CategoriaController : Controller
     {
         FUNKOBDEntities1 data = new FUNKOBDEntities1();
+        Procedimientos proce = new Procedimientos();
         // GET: Categoria
         public ActionResult Index()
         {
@@ -21,6 +22,7 @@ namespace funko_store_1._0.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.Opciones = proce.Estados();
             return View(new tb_categorias());
         }
 
@@ -41,6 +43,7 @@ namespace funko_store_1._0.Controllers
         public ActionResult Edit(int id)
         {
             tb_categorias regCat = data.tb_categorias.Where(c => c.idcate == id).First();
+            ViewBag.Opciones = proce.Estados();
             return View(regCat);
         }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Diagnostics;
 using funko_store_1._0.Models;
 using System.Data.SqlClient;
 using System.Configuration;
@@ -15,17 +16,18 @@ namespace funko_store_1._0.Controllers
     {
 
         FUNKOBDEntities1 data = new FUNKOBDEntities1();
-        Procedimientos pro = new Procedimientos();
+        Procedimientos proce = new Procedimientos();
 
         // GET: Producto
         public ActionResult Index()
         {
-            return View(pro.listarProdcutos());
+            return View(proce.listarProdcutos());
         }
 
         public ActionResult Create()
         {
-            ViewBag.tb_categorias = new SelectList(pro.listarCategorias().ToList(), "idcate", "nomcate");
+            ViewBag.tb_categorias = new SelectList(proce.listarCategorias().ToList(), "idcate", "nomcate");
+            ViewBag.Opciones = proce.Estados();
             return View(new Productos());
         }
 
@@ -47,21 +49,23 @@ namespace funko_store_1._0.Controllers
 
             if (!ModelState.IsValid)
             {
-                ViewBag.tb_categorias = new SelectList(pro.listarCategorias().ToList(), "idcate", "nomcate");
+                ViewBag.tb_categorias = new SelectList(proce.listarCategorias().ToList(), "idcate", "nomcate");
                 return View(objpro);
             }
 
             objpro.imagen = img;
-            pro.insertarProducto(objpro);
+            string msg = proce.insertarProducto(objpro);
+            Debug.WriteLine(msg);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult Edit(string id)
         {
-            Productos xpro = pro.DetalleProducto(id);
+            Productos xpro = proce.DetalleProducto(id);
 
-            ViewBag.tb_categorias = new SelectList(pro.listarCategorias().ToList(), "idcate", "nomcate", xpro.idcate);
+            ViewBag.tb_categorias = new SelectList(proce.listarCategorias().ToList(), "idcate", "nomcate", xpro.idcate);
+            ViewBag.Opciones = proce.Estados();
 
             return View(xpro);
         }
@@ -71,24 +75,34 @@ namespace funko_store_1._0.Controllers
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.tb_categorias = new SelectList(pro.listarCategorias().ToList(), "idcate", "nomcate", objpro.idcate);
+                ViewBag.tb_categorias = new SelectList(proce.listarCategorias().ToList(), "idcate", "nomcate", objpro.idcate);
                 return View(objpro);
             }
 
-            pro.actualizaProducto(objpro);
+            if (objpro.imagen == null)
+            {
+                Productos xpro = proce.DetalleProducto(objpro.idprodu);
+                objpro.imagen = xpro.imagen;
+            }
+
+            Debug.WriteLine("Imagen: " + objpro.imagen);
+            string msg = proce.actualizaProducto(objpro);
+            Debug.WriteLine(msg);
 
             return RedirectToAction("Index");
         }
 
         public ActionResult Details(string id)
         {
-            return View(pro.DetalleProducto(id));
+            return View(proce.DetalleProducto(id));
         }
 
         public ActionResult Delete(string id)
         {
-            pro.eliminarProducto(id);
+            string msg = proce.eliminarProducto(id);
+            Debug.WriteLine(msg);
             return RedirectToAction("Index");
         }
+
     }
 }
