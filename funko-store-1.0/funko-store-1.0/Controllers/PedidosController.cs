@@ -19,6 +19,11 @@ namespace funko_store_1._0.Controllers
 
         public ActionResult Index()
         {
+            if (Session["usuario"] == null)
+            {
+                return RedirectToAction("Login", "Sesion");
+            }
+
             UsuarioSesion usu = (UsuarioSesion)Session["usuario"];
 
             if(usu.tipo == "CLIENTE")

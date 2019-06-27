@@ -4,52 +4,54 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Lista de Pedidos</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.idpedido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fecpedido)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.idusu)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.total)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.estado)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.idpedido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fecpedido)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.idusu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.total)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.estado)
-        </td>
-        <td>
-            @Html.ActionLink("Ver Detalle", "Detalle", new {  id=item.idpedido }, new { @class = "btn btn-success" })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="table-responsive-sm" style="max-height:300px; overflow:auto;">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>
+                    ID
+                </th>
+                <th>
+                    Fecha
+                </th>
+                <th>
+                    ID Usuario
+                </th>
+                <th>
+                    (S/.) Monto Total
+                </th>
+                <th>
+                    Estado
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idpedido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.fecpedido)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.idusu)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.total)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.estado)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Ver Detalle", "Detalle", new { id = item.idpedido }, new { @class = "btn btn-success" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

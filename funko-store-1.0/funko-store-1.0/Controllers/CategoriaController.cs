@@ -17,6 +17,11 @@ namespace funko_store_1._0.Controllers
         // GET: Categoria
         public ActionResult Index()
         {
+            if (Session["usuario"] == null)
+            {
+                return RedirectToAction("Login", "Sesion");
+            }
+
             return View(data.tb_categorias.ToList());
         }
 

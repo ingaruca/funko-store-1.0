@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using funko_store_1._0.Models;
 using System.Security.Cryptography;
 using System.Text;
+using System.Diagnostics;
 
 namespace funko_store_1._0.Controllers
 {
@@ -36,11 +37,15 @@ namespace funko_store_1._0.Controllers
 
             try
             {
-                SqlCommand cmd = new SqlCommand("INSERT INTO tb_usuarios(nomusu, pass, tipusu, estado) VALUES(@usu, @pass, @tipo, @estado)", cn);
+                SqlCommand cmd = new SqlCommand("INSERT INTO tb_usuarios(nomusu, pass, tipusu, estado, correo, direcenvio, tarjeta) VALUES(@usu, @pass, @tipo, @estado, @correo, @direc, @tarjeta)", cn);
                 cmd.Parameters.AddWithValue("@usu", nomusu);
                 cmd.Parameters.AddWithValue("@pass", GenerateSHA512String(pass));
                 cmd.Parameters.AddWithValue("@tipo", "CLIENTE");
                 cmd.Parameters.AddWithValue("@estado", "A");
+                cmd.Parameters.AddWithValue("@correo", " ");
+                cmd.Parameters.AddWithValue("@direc", " ");
+                cmd.Parameters.AddWithValue("@tarjeta", " ");
+
 
                 cmd.ExecuteNonQuery();
 
@@ -58,7 +63,7 @@ namespace funko_store_1._0.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: ", e.Message);
+                Debug.WriteLine("Error: ", e.Message);
             }
             finally
             {

@@ -18,6 +18,11 @@ namespace funko_store_1._0.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
+            if (Session["usuario"] == null)
+            {
+                return RedirectToAction("Login", "Sesion");
+            }
+
             return View(pro.LISTARUSUARIO());
         }
 

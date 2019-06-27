@@ -7,6 +7,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Web.Mvc;
 using System.Diagnostics;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace funko_store_1._0.Models
 {
@@ -199,7 +201,7 @@ namespace funko_store_1._0.Models
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@idusu", usu.idusu);
                 cmd.Parameters.AddWithValue("@nomusu", usu.nomusu);
-                cmd.Parameters.AddWithValue("@pass", usu.pass);
+                cmd.Parameters.AddWithValue("@pass", GenerateSHA512String(usu.pass));
                 cmd.Parameters.AddWithValue("@tipusu", usu.tipusu);
                 cmd.Parameters.AddWithValue("@correo", usu.correo);
                 cmd.Parameters.AddWithValue("@direcenvio", usu.direcenvio);
@@ -345,5 +347,22 @@ namespace funko_store_1._0.Models
             return lst;
         }
 
+        public static string GenerateSHA512String(string inputString)
+        {
+            SHA512 sha512 = SHA512Managed.Create();
+            byte[] bytes = Encoding.UTF8.GetBytes(inputString);
+            byte[] hash = sha512.ComputeHash(bytes);
+            return GetStringFromHash(hash);
+        }
+
+        private static string GetStringFromHash(byte[] hash)
+        {
+            StringBuilder result = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                result.Append(hash[i].ToString("X2"));
+            }
+            return result.ToString();
+        }
     }
 }

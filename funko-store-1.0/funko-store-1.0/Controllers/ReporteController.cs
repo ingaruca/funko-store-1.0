@@ -13,6 +13,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.tool.xml;
 using iTextSharp.text.html.simpleparser;
+using System.Diagnostics;
 
 namespace funko_store_1._0.Controllers
 {
@@ -27,7 +28,7 @@ namespace funko_store_1._0.Controllers
         {
             if (Session["usuario"] == null)
             {
-                return RedirectToAction("Index", "Funko");
+                return RedirectToAction("Login", "Sesion");
             }
 
             List<tb_pedido> listapedidos = new List<tb_pedido>();
@@ -45,7 +46,7 @@ namespace funko_store_1._0.Controllers
         {
             //if (Session["usuario"] == null)
             //{
-            //  return RedirectToAction("Index", "Funko");
+               //return RedirectToAction("");
             //}
 
             ViewBag.usuario = new SelectList(data.tb_usuarios.ToList(), "idusu", "nomusu", idusu);
@@ -78,7 +79,7 @@ namespace funko_store_1._0.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.Message);
+                Debug.WriteLine("Error: " + e.Message);
             }
             finally
             {
@@ -126,7 +127,7 @@ namespace funko_store_1._0.Controllers
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error: " + e.Message);
+                Debug.WriteLine("Error: " + e.Message);
             }
             finally
             {
